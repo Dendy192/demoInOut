@@ -40,7 +40,6 @@
                         </div>
                         <div class="card-body">
                             <h1 id="tapIn" class="justify-content-center align-items-center">
-                                1
                             </h1>
                             <!-- <canvas id="myAreaChart" width="100%" height=""></canvas> -->
                         </div>
@@ -55,7 +54,6 @@
                         </div>
                         <div class="card-body">
                             <h1 id="tapOut" class="justify-content-center align-items-center">
-                                1
                             </h1>
                             <!-- <canvas id="myAreaChart" width="100%" height=""></canvas> -->
                         </div>
@@ -84,7 +82,7 @@
             });
         }
 
-        // Fetch data every 5 seconds
+        // Fetch data every 3 seconds
         setInterval(fetchData, 3000);
 
         // Initial fetch
