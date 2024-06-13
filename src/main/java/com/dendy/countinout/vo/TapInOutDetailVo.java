@@ -1,6 +1,5 @@
 package com.dendy.countinout.vo;
 
-import java.util.List;
 
 public class TapInOutDetailVo {
     private String gateName;
