@@ -52,9 +52,9 @@ public class DetailsServiceImpl implements DetailsService {
                     MSTKARYModel mstkaryModel = optional.get();
                     vo.setNama(mstkaryModel.getNama());
                     vo.setDepartement(mstkaryModel.getJabatan());
-                    vo.setPerushaan("ZONA TECHNOLOGY INDONESIA, PT");
+                    vo.setPerushaan(mstkaryModel.getPerusahaan());
                     vo.setFoto("arashmil.jpg");
-                    vo.setNoKartu(mstkaryModel.getNoKartu());
+                    vo.setNoKartu(modelIn.getId());
                     tableVoList.add(vo);
                 } else {
                 }
@@ -72,9 +72,9 @@ public class DetailsServiceImpl implements DetailsService {
                     MSTKARYModel mstkaryModel = optional.get();
                     vo.setNama(mstkaryModel.getNama());
                     vo.setDepartement(mstkaryModel.getJabatan());
-                    vo.setPerushaan("ZONA TECHNOLOGY INDONESIA, PT");
+                    vo.setPerushaan(mstkaryModel.getPerusahaan());
                     vo.setFoto("arashmil.jpg");
-                    vo.setNoKartu(mstkaryModel.getNoKartu());
+                    vo.setNoKartu(modelOut.getId());
                     tableVoList.add(vo);
 
                 } else {

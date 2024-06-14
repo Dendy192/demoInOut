@@ -30,22 +30,20 @@ public class RTlangServiceImpl implements RTLangService {
         Timestamp start = DateUtils.toStartOfDay(DateUtils.getTimeSql());
         Timestamp end = DateUtils.toEndOfDay(DateUtils.getTimeSql());
         Optional<List<TRNKRTLANGModel>> oLModel = trnkrtlangService.findTRNKRTLANGModelByTapMasukBetween(start, end);
+        Optional<List<TRNKRTLANGModel>> outLmodel = trnkrtlangService.findTRNKRTLANGModelByTapKeluarBetween(start, end);
         List<TRNKRTLANGModel> lModel = oLModel.get();
+        List<TRNKRTLANGModel> oModel = outLmodel.get();
+        HashMap tap = new HashMap<>();
         if (oLModel.isPresent() && lModel.size() != 0) {
-            HashMap tap = new HashMap<>();
-            HashMap tapOutH = new HashMap<>();
+            tap.put(LabelUtils.tapIn, lModel);
 
-            List<String> tapOut = new ArrayList<>();
-            List<TRNKRTLANGModel> out = new ArrayList<>();
-            for (TRNKRTLANGModel model : lModel) {
-                tap.put(LabelUtils.tapIn, lModel);
-                if (model.getTapKeluar() != null) {
-                    out.add(model);
-                    tap.put(LabelUtils.tapOut, out);
-                }else{
-                    tap.put(LabelUtils.tapOut, out);
-                }
-            }
+        }
+        if (outLmodel.isPresent() && oModel.size() != 0) {
+            tap.put(LabelUtils.tapOut, oModel);
+        }
+        if (!tap.isEmpty()) {
+
+
             HashMap gate = mappingGate(tap);
 
             TapInOutVo vo = new TapInOutVo();
@@ -76,13 +74,13 @@ public class RTlangServiceImpl implements RTLangService {
 
                 tapInOutDetailVos.add(tapInOutDetailVo);
 
-            }
-            vo.setData(tapInOutDetailVos);
+                vo.setData(tapInOutDetailVos);
 
-            result.put(LabelUtils.data, vo);
+                result.put(LabelUtils.data, vo);
+            }
         } else {
-            TapInOutVo vo = new TapInOutVo();
-            List<TapInOutDetailVo> tapInOutDetailVos = new ArrayList<>();
+            TapInOutVo vo2 = new TapInOutVo();
+            List<TapInOutDetailVo> tapInOutDetailVos1 = new ArrayList<>();
             List<GateVo> gateVos = gateService.getAllGate();
             for (GateVo vo1 : gateVos) {
                 TapInOutDetailVo tapInOutDetailVo = new TapInOutDetailVo();
@@ -93,11 +91,12 @@ public class RTlangServiceImpl implements RTLangService {
                 tapInOutDetailVo.setGateName(vo1.getName());
 
 
-                tapInOutDetailVos.add(tapInOutDetailVo);
+                tapInOutDetailVos1.add(tapInOutDetailVo);
             }
-            vo.setData(tapInOutDetailVos);
-            result.put(LabelUtils.data, vo);
+            vo2.setData(tapInOutDetailVos1);
+            result.put(LabelUtils.data, vo2);
         }
+
         return result;
     }
 
@@ -107,22 +106,20 @@ public class RTlangServiceImpl implements RTLangService {
         Timestamp startT = DateUtils.toStartOfDay(DateUtils.convertStringToTimeSql(start));
         Timestamp endT = DateUtils.toEndOfDay(DateUtils.convertStringToTimeSql(end));
         Optional<List<TRNKRTLANGModel>> oLModel = trnkrtlangService.findTRNKRTLANGModelByTapMasukBetween(startT, endT);
+        Optional<List<TRNKRTLANGModel>> outLmodel = trnkrtlangService.findTRNKRTLANGModelByTapKeluarBetween(startT, endT);
         List<TRNKRTLANGModel> lModel = oLModel.get();
+        List<TRNKRTLANGModel> oModel = outLmodel.get();
+        HashMap tap = new HashMap<>();
         if (oLModel.isPresent() && lModel.size() != 0) {
-            HashMap tap = new HashMap<>();
-            HashMap tapOutH = new HashMap<>();
+            tap.put(LabelUtils.tapIn, lModel);
 
-            List<String> tapOut = new ArrayList<>();
-            List<TRNKRTLANGModel> out = new ArrayList<>();
-            for (TRNKRTLANGModel model : lModel) {
-                tap.put(LabelUtils.tapIn, lModel);
-                if (model.getTapKeluar() != null) {
-                    out.add(model);
-                    tap.put(LabelUtils.tapOut, out);
-                }else{
-                    tap.put(LabelUtils.tapOut, out);
-                }
-            }
+        }
+        if (outLmodel.isPresent() && oModel.size() != 0) {
+            tap.put(LabelUtils.tapOut, oModel);
+        }
+        if (!tap.isEmpty()) {
+
+
             HashMap gate = mappingGate(tap);
 
             TapInOutVo vo = new TapInOutVo();
@@ -153,13 +150,13 @@ public class RTlangServiceImpl implements RTLangService {
 
                 tapInOutDetailVos.add(tapInOutDetailVo);
 
-            }
-            vo.setData(tapInOutDetailVos);
+                vo.setData(tapInOutDetailVos);
 
-            result.put(LabelUtils.data, vo);
+                result.put(LabelUtils.data, vo);
+            }
         } else {
-            TapInOutVo vo = new TapInOutVo();
-            List<TapInOutDetailVo> tapInOutDetailVos = new ArrayList<>();
+            TapInOutVo vo2 = new TapInOutVo();
+            List<TapInOutDetailVo> tapInOutDetailVos1 = new ArrayList<>();
             List<GateVo> gateVos = gateService.getAllGate();
             for (GateVo vo1 : gateVos) {
                 TapInOutDetailVo tapInOutDetailVo = new TapInOutDetailVo();
@@ -170,26 +167,26 @@ public class RTlangServiceImpl implements RTLangService {
                 tapInOutDetailVo.setGateName(vo1.getName());
 
 
-                tapInOutDetailVos.add(tapInOutDetailVo);
+                tapInOutDetailVos1.add(tapInOutDetailVo);
             }
-            vo.setData(tapInOutDetailVos);
-            result.put(LabelUtils.data, vo);
+            vo2.setData(tapInOutDetailVos1);
+            result.put(LabelUtils.data, vo2);
         }
+
         return result;
     }
 
     public HashMap mappingGate(HashMap map) {
         HashMap result = new HashMap<>();
-
         List<TRNKRTLANGModel> in = (List<TRNKRTLANGModel>) map.get(LabelUtils.tapIn);
         List<TRNKRTLANGModel> out = (List<TRNKRTLANGModel>) map.get(LabelUtils.tapOut);
         List<GateVo> getGate = gateService.getAllGate();
-        for(GateVo gV : getGate){
+        for (GateVo gV : getGate) {
             result.put(gV.getName(), new HashMap<>());
         }
-        for (TRNKRTLANGModel i : in) {
-            GateVo gateVo = gateService.getGateName(i.getGateMasuk());
-//            if (result.containsKey(gateVo.getName())) {
+        if (in != null) {
+            for (TRNKRTLANGModel i : in) {
+                GateVo gateVo = gateService.getGateName(i.getGateMasuk());
                 HashMap data = (HashMap) result.get(gateVo.getName());
                 if (data.containsKey(LabelUtils.tapIn)) {
                     List<String> gate = (List<String>) data.get(LabelUtils.tapIn);
@@ -201,37 +198,34 @@ public class RTlangServiceImpl implements RTLangService {
                     data.put(LabelUtils.tapIn, gate);
                 }
                 result.put(gateVo.getName(), data);
-//            } else {
-//                HashMap data = new HashMap<>();
-//                List<String> gate = new ArrayList<>();
-//                gate.add(i.getId());
-//                data.put(LabelUtils.tapIn, gate);
-//                result.put(gateVo.getName(), data);
-//            }
 
+            }
         }
-        for (TRNKRTLANGModel o : out) {
-            GateVo gateVo = gateService.getGateName(o.getGateMasuk());
-            if (result.containsKey(gateVo.getName())) {
-                HashMap data = (HashMap) result.get(gateVo.getName());
-                if (data.containsKey(LabelUtils.tapOut)) {
-                    List<String> gate = (List<String>) data.get(LabelUtils.tapOut);
-                    gate.add(o.getId());
-                    data.put(LabelUtils.tapOut, gate);
+        if (out != null) {
+
+
+            for (TRNKRTLANGModel o : out) {
+                GateVo gateVo = gateService.getGateName(o.getGateMasuk());
+                if (result.containsKey(gateVo.getName())) {
+                    HashMap data = (HashMap) result.get(gateVo.getName());
+                    if (data.containsKey(LabelUtils.tapOut)) {
+                        List<String> gate = (List<String>) data.get(LabelUtils.tapOut);
+                        gate.add(o.getId());
+                        data.put(LabelUtils.tapOut, gate);
+                    } else {
+                        List<String> gate = new ArrayList<>();
+                        gate.add(o.getId());
+                        data.put(LabelUtils.tapOut, gate);
+                    }
+                    result.put(gateVo.getName(), data);
                 } else {
+                    HashMap data = new HashMap<>();
                     List<String> gate = new ArrayList<>();
                     gate.add(o.getId());
                     data.put(LabelUtils.tapOut, gate);
+                    result.put(gateVo.getName(), data);
                 }
-                result.put(gateVo.getName(), data);
-            } else {
-                HashMap data = new HashMap<>();
-                List<String> gate = new ArrayList<>();
-                gate.add(o.getId());
-                data.put(LabelUtils.tapOut, gate);
-                result.put(gateVo.getName(), data);
             }
-
         }
 
         return result;

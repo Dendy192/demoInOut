@@ -21,6 +21,17 @@ public class MSTKARYModel {
     @Column(name = "MSTTAG")
     private String noKartu;
 
+    @Column(name = "MSTMANDOT")
+    private String perusahaan;
+
+    public String getPerusahaan() {
+        return perusahaan;
+    }
+
+    public void setPerusahaan(String perusahaan) {
+        this.perusahaan = perusahaan;
+    }
+
     public String getNoKartu() {
         return noKartu;
     }
