@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateUtils {
@@ -19,6 +20,14 @@ public class DateUtils {
         Date parsedDate = dateFormat.parse(data);
         return new Timestamp(parsedDate.getTime());
     }
+
+    public static String convertDateTimeToTimeString(Timestamp data) throws ParseException {
+        LocalDateTime localDateTime = data.toLocalDateTime();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String result = localDateTime.format(timeFormatter);
+        return result;
+    }
+
 
     public static Timestamp toStartOfDay(Timestamp timestamp) {
         LocalDateTime localDateTime = timestamp.toLocalDateTime();

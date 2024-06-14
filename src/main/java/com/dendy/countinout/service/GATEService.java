@@ -7,4 +7,6 @@ import java.util.List;
 public interface GATEService {
     GateVo getGateName(String id);
     List<GateVo> getAllGate();
+
+    GateVo getGate(String name);
 }

@@ -37,4 +37,13 @@ public class GateServiceImpl implements GATEService {
         }
         return result;
     }
+
+    @Override
+    public GateVo getGate(String name) {
+        GateVo vo = new GateVo();
+        MSTGATEModel gate = gateService.findMSTGATEModelByName(name);
+        vo.setId(gate.getId());
+        vo.setName(gate.getName());
+        return vo;
+    }
 }

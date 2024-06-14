@@ -29,7 +29,7 @@ public class RTlangServiceImpl implements RTLangService {
         HashMap result = new HashMap<>();
         Timestamp start = DateUtils.toStartOfDay(DateUtils.getTimeSql());
         Timestamp end = DateUtils.toEndOfDay(DateUtils.getTimeSql());
-        Optional<List<TRNKRTLANGModel>> oLModel = trnkrtlangService.findTRNKRTLANGModelByTapInBetween(start, end);
+        Optional<List<TRNKRTLANGModel>> oLModel = trnkrtlangService.findTRNKRTLANGModelByTapMasukBetween(start, end);
         List<TRNKRTLANGModel> lModel = oLModel.get();
         if (oLModel.isPresent() && lModel.size() != 0) {
             HashMap tap = new HashMap<>();
@@ -39,7 +39,7 @@ public class RTlangServiceImpl implements RTLangService {
             List<TRNKRTLANGModel> out = new ArrayList<>();
             for (TRNKRTLANGModel model : lModel) {
                 tap.put(LabelUtils.tapIn, lModel);
-                if (model.getTapOut() != null) {
+                if (model.getTapKeluar() != null) {
                     out.add(model);
                     tap.put(LabelUtils.tapOut, out);
                 }else{
@@ -106,7 +106,7 @@ public class RTlangServiceImpl implements RTLangService {
         HashMap result = new HashMap<>();
         Timestamp startT = DateUtils.toStartOfDay(DateUtils.convertStringToTimeSql(start));
         Timestamp endT = DateUtils.toEndOfDay(DateUtils.convertStringToTimeSql(end));
-        Optional<List<TRNKRTLANGModel>> oLModel = trnkrtlangService.findTRNKRTLANGModelByTapInBetween(startT, endT);
+        Optional<List<TRNKRTLANGModel>> oLModel = trnkrtlangService.findTRNKRTLANGModelByTapMasukBetween(startT, endT);
         List<TRNKRTLANGModel> lModel = oLModel.get();
         if (oLModel.isPresent() && lModel.size() != 0) {
             HashMap tap = new HashMap<>();
@@ -116,7 +116,7 @@ public class RTlangServiceImpl implements RTLangService {
             List<TRNKRTLANGModel> out = new ArrayList<>();
             for (TRNKRTLANGModel model : lModel) {
                 tap.put(LabelUtils.tapIn, lModel);
-                if (model.getTapOut() != null) {
+                if (model.getTapKeluar() != null) {
                     out.add(model);
                     tap.put(LabelUtils.tapOut, out);
                 }else{
@@ -188,7 +188,7 @@ public class RTlangServiceImpl implements RTLangService {
             result.put(gV.getName(), new HashMap<>());
         }
         for (TRNKRTLANGModel i : in) {
-            GateVo gateVo = gateService.getGateName(i.getGateIn());
+            GateVo gateVo = gateService.getGateName(i.getGateMasuk());
 //            if (result.containsKey(gateVo.getName())) {
                 HashMap data = (HashMap) result.get(gateVo.getName());
                 if (data.containsKey(LabelUtils.tapIn)) {
@@ -211,7 +211,7 @@ public class RTlangServiceImpl implements RTLangService {
 
         }
         for (TRNKRTLANGModel o : out) {
-            GateVo gateVo = gateService.getGateName(o.getGateIn());
+            GateVo gateVo = gateService.getGateName(o.getGateMasuk());
             if (result.containsKey(gateVo.getName())) {
                 HashMap data = (HashMap) result.get(gateVo.getName());
                 if (data.containsKey(LabelUtils.tapOut)) {

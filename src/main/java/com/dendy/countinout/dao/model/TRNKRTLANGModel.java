@@ -19,19 +19,19 @@ public class TRNKRTLANGModel {
     private String cardNo;
 
     @Column(name = "TRNTIMEIN")
-    private Timestamp tapIn;
+    private Timestamp tapMasuk;
 
     @Column(name = "TRNGATEIN")
-    private String gateIn;
+    private String gateMasuk;
 
     @Column(name = "TRNCEKOUT")
     private int cekOut;
 
     @Column(name = "TRNTIMEOUT")
-    private Timestamp tapOut;
+    private Timestamp tapKeluar;
 
     @Column(name = "TRNGATEOUT")
-    private String gateOut;
+    private String gateKeluar;
 
     public String getId() {
         return id;
@@ -49,20 +49,13 @@ public class TRNKRTLANGModel {
         this.cardNo = cardNo;
     }
 
-    public Timestamp getTapIn() {
-        return tapIn;
+
+    public String getGateMasuk() {
+        return gateMasuk;
     }
 
-    public void setTapIn(Timestamp tapIn) {
-        this.tapIn = tapIn;
-    }
-
-    public String getGateIn() {
-        return gateIn;
-    }
-
-    public void setGateIn(String gateIn) {
-        this.gateIn = gateIn;
+    public void setGateMasuk(String gateMasuk) {
+        this.gateMasuk = gateMasuk;
     }
 
     public int getCekOut() {
@@ -73,19 +66,27 @@ public class TRNKRTLANGModel {
         this.cekOut = cekOut;
     }
 
-    public Timestamp getTapOut() {
-        return tapOut;
+    public String getGateKeluar() {
+        return gateKeluar;
     }
 
-    public void setTapOut(Timestamp tapOut) {
-        this.tapOut = tapOut;
+    public void setGateKeluar(String gateKeluar) {
+        this.gateKeluar = gateKeluar;
     }
 
-    public String getGateOut() {
-        return gateOut;
+    public Timestamp getTapMasuk() {
+        return tapMasuk;
     }
 
-    public void setGateOut(String gateOut) {
-        this.gateOut = gateOut;
+    public void setTapMasuk(Timestamp tapMasuk) {
+        this.tapMasuk = tapMasuk;
+    }
+
+    public Timestamp getTapKeluar() {
+        return tapKeluar;
+    }
+
+    public void setTapKeluar(Timestamp tapKeluar) {
+        this.tapKeluar = tapKeluar;
     }
 }

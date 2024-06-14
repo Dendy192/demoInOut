@@ -10,5 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface TRNKRTLANGService extends JpaRepository<TRNKRTLANGModel, String> {
-    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByTapInBetween(Timestamp startDateTime, Timestamp endDateTime);
+    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByTapMasukBetween(Timestamp startDateTime, Timestamp endDateTime);
+
+    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByGateMasukAndTapMasukBetween(String gateIn, Timestamp startDateTime, Timestamp endDateTime);
+
+    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByGateKeluarAndTapKeluarBetween(String gateIn, Timestamp startDateTime, Timestamp endDateTime);
 }

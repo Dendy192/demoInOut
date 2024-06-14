@@ -1,13 +1,29 @@
 let previousData = null;
 let intervalId;
 
-function cardClicked(gateName, start, end) {
+function cardClicked(gateName) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    let formattedToday = dd + '-' + mm + '-' + yyyy;
+    let start = document.getElementById('input_from').value;
+    let end = document.getElementById("input_to").value;
+
+    if(start =="" || start == null ){
+        start = formattedToday;
+    }if(end == "" || end == null){
+        end = formattedToday;
+    }
+    let urlParam = "?gateName="+gateName+"&startDate="+start+"&endDate="+end+"";
     console.log(gateName)
+    window.location.href =detailUrl+urlParam;
 }
 
-function stopAutoRefresh() {
-    clearInterval(intervalId);
-}
 
 const options = {
     responsive: true,
