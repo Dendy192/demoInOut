@@ -106,7 +106,7 @@
                                             <td>${vo.perushaan}</td>
                                             <td>${vo.departement}</td>
                                             <td>${vo.status}</td>
-                                            <td><img src="<c:url value="/images/${vo.foto}"/>"  class="thumbnail" /></td>
+                                            <td><img src="<c:url value="/images/${vo.foto}"/>" class="thumbnail"/></td>
                                         </tr>
                                     </c:forEach>
 
@@ -119,21 +119,24 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4">
-                <div class="form-group">
-                    <select class="form-select" id="exampleFormControlSelect1">
-                        <option>PDF</option>
-                        <option>XLSX</option>
-                    </select>
+        <form action="<c:url value="/download"/> " method="POST">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <select class="form-select" id="exampleFormControlSelect1" name="fileType">
+                            <option value="pdf">PDF</option>
+                            <option value="xlsx">XLSX</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary">download</button>
+                <div class="col-4">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">download</button>
+                    </div>
                 </div>
+
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <!--   Core JS Files   -->

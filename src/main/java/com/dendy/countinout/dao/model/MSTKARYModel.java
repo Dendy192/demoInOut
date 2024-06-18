@@ -21,7 +21,7 @@ public class MSTKARYModel {
     @Column(name = "MSTTAG")
     private String noKartu;
 
-    @Column(name = "MSTMANDOT")
+    @Column(name = "MSTMANDOR")
     private String perusahaan;
 
     public String getPerusahaan() {

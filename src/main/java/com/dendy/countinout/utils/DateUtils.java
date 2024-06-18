@@ -17,6 +17,7 @@ public class DateUtils {
 
     public static Timestamp convertStringToTimeSql(String data) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
         Date parsedDate = dateFormat.parse(data);
         return new Timestamp(parsedDate.getTime());
     }
@@ -25,6 +26,21 @@ public class DateUtils {
         LocalDateTime localDateTime = data.toLocalDateTime();
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String result = localDateTime.format(timeFormatter);
+        return result;
+    }
+
+    public static String convertDateTimeToTimeStringFull(Timestamp data) throws ParseException {
+        LocalDateTime localDateTime = data.toLocalDateTime();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String result = localDateTime.format(timeFormatter);
+        return result;
+    }
+
+    public static String convertDateTimeToTimeStringHalf(String data) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd MMM yyyy");
+        Date parsedDate = dateFormat.parse(data);
+        String result = dateFormat1.format(parsedDate);
         return result;
     }
 
