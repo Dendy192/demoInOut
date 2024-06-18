@@ -38,8 +38,8 @@ public class DashboardController {
     ReportService reportService;
     private final ObjectMapper objectMapper;
 
-    @Value("${directory.image}")
-    private String FILE_DIRECTORY;
+//    @Value("${directory.image}")
+//    private String FILE_DIRECTORY;
 
 
     public DashboardController(ObjectMapper objectMapper) {
@@ -82,7 +82,7 @@ public class DashboardController {
 
     @GetMapping("/images/{filename}")
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-        File file = new File(FILE_DIRECTORY + filename);
+        File file = new File(filename);
         FileSystemResource resource = new FileSystemResource(file);
 
         // Check if the file exists
@@ -109,13 +109,6 @@ public class DashboardController {
                 .headers(headers)
                 .body(resource);
     }
-//    @RequestMapping(value = "/download",method = RequestMethod.POST)
-//    public HashMap testDownload (@RequestParam("fileType") String fileType, HttpServletRequest request){
-//        HashMap result = new HashMap<>();
-//        result.put("data", request.getSession().getAttribute("generate"));
-//        System.out.println(request.getSession().getAttribute("generate"));
-//        return  result;
-//    }
 
     @RequestMapping(value = "/download", method = RequestMethod.POST)
     public ResponseEntity<byte[]> downloadReport(@RequestParam("fileType") String fileType,HttpServletRequest request, HttpServletResponse response ) throws JRException, IOException {
