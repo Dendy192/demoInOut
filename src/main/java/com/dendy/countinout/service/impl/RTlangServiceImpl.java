@@ -1,7 +1,7 @@
 package com.dendy.countinout.service.impl;
 
-import com.dendy.countinout.dao.model.TRNKRTLANGModel;
-import com.dendy.countinout.dao.service.TRNKRTLANGService;
+import com.dendy.countinout.dao.model.primary.TRNKRTLANGModel;
+import com.dendy.countinout.dao.service.primary.TRNKRTLANGService;
 import com.dendy.countinout.service.GATEService;
 import com.dendy.countinout.service.RTLangService;
 import com.dendy.countinout.utils.DateUtils;

@@ -1,4 +1,4 @@
-package com.dendy.countinout.dao.model;
+package com.dendy.countinout.dao.model.primary;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +23,17 @@ public class MSTKARYModel {
 
     @Column(name = "MSTMANDOR")
     private String perusahaan;
+
+    @Column(name = "MSTPIC")
+    private String pic;
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
 
     public String getPerusahaan() {
         return perusahaan;

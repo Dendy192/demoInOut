@@ -1,5 +1,7 @@
 package com.dendy.countinout.controller;
 
+import com.dendy.countinout.dao.model.secondary.PIC001Model;
+import com.dendy.countinout.dao.service.secondary.PIC001Service;
 import com.dendy.countinout.service.DetailsService;
 import com.dendy.countinout.service.RTLangService;
 import com.dendy.countinout.service.ReportService;
@@ -25,6 +27,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.http.HttpResponse;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 
@@ -36,10 +39,11 @@ public class DashboardController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    PIC001Service pic001Service;
     private final ObjectMapper objectMapper;
 
-//    @Value("${directory.image}")
-//    private String FILE_DIRECTORY;
 
 
     public DashboardController(ObjectMapper objectMapper) {
@@ -71,7 +75,7 @@ public class DashboardController {
     }
 
     @RequestMapping(value = "/details")
-    public String detail(HttpServletRequest request, @RequestParam String gateName, @RequestParam String startDate, @RequestParam String endDate) throws ParseException {
+    public String detail(HttpServletRequest request, @RequestParam String gateName, @RequestParam String startDate, @RequestParam String endDate) throws ParseException, SQLException {
         System.out.println(gateName);
         HashMap result = detailsService.getDetail(gateName, startDate, endDate);
         request.getSession().setAttribute("gate", gateName);
@@ -80,34 +84,12 @@ public class DashboardController {
         return "detail";
     }
 
-    @GetMapping("/images/{filename}")
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-        File file = new File(filename);
-        FileSystemResource resource = new FileSystemResource(file);
-
-        // Check if the file exists
-        if (!resource.exists()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        // Determine the content type dynamically
-        String contentType;
-        try {
-            contentType = URLDecoder.decode(file.toURI().toURL().openConnection().getContentType(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
-        } catch (Exception e) {
-            contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
-        }
-
-        // Set content disposition as inline; filename="<filename>"
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentDispositionFormData("inline", filename);
-        headers.setContentType(MediaType.parseMediaType(contentType));
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .body(resource);
+    @GetMapping("/images/{id}")
+    public void serveFile(@PathVariable String id, HttpServletResponse response) throws IOException {
+        PIC001Model model = pic001Service.findPIC001ModelByPid(id);
+        response.setContentType("image/jpeg"); // or "image/png" or other image formats
+        response.getOutputStream().write(model.getData());
+        response.getOutputStream().close();
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.POST)

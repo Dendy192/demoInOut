@@ -1,4 +1,4 @@
-package com.dendy.countinout.dao.model;
+package com.dendy.countinout.dao.model.primary;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

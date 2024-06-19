@@ -1,7 +1,7 @@
 package com.dendy.countinout.service.impl;
 
-import com.dendy.countinout.dao.model.MSTGATEModel;
-import com.dendy.countinout.dao.service.MSTGATEService;
+import com.dendy.countinout.dao.model.primary.MSTGATEModel;
+import com.dendy.countinout.dao.service.primary.MSTGATEService;
 import com.dendy.countinout.service.GATEService;
 import com.dendy.countinout.vo.GateVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GateServiceImpl implements GATEService {

@@ -36,9 +36,10 @@ public class ReportServiceImpl implements ReportService {
 
         List<Map<String, Object>> subReportData = mappingData(vo.getData());
         JRBeanCollectionDataSource subDataSource = new JRBeanCollectionDataSource(subReportData);
-        parameters.put("datasource", subDataSource);
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, subDataSource);
+        Map test = new HashMap();
+        test.put("datasource", subDataSource);
+        parameters.put("datasource_param",test);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
         JasperViewer.viewReport(jasperPrint);
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }

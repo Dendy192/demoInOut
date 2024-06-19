@@ -1,10 +1,8 @@
-package com.dendy.countinout.dao.service;
+package com.dendy.countinout.dao.service.primary;
 
-import com.dendy.countinout.dao.model.MSTGATEModel;
+import com.dendy.countinout.dao.model.primary.MSTGATEModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface MSTGATEService extends JpaRepository<MSTGATEModel, String> {

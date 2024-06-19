@@ -1,6 +1,6 @@
-package com.dendy.countinout.dao.service;
+package com.dendy.countinout.dao.service.primary;
 
-import com.dendy.countinout.dao.model.TRNGENLOGModel;
+import com.dendy.countinout.dao.model.primary.TRNGENLOGModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

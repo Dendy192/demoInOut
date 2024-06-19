@@ -1,7 +1,6 @@
-package com.dendy.countinout.dao.service;
+package com.dendy.countinout.dao.service.primary;
 
-import com.dendy.countinout.dao.model.MSTKARYModel;
-import jakarta.persistence.Entity;
+import com.dendy.countinout.dao.model.primary.MSTKARYModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
