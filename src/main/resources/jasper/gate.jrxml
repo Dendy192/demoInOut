@@ -5,8 +5,14 @@
 	<parameter name="tanggal" class="java.lang.String"/>
 	<parameter name="pintu" class="java.lang.String"/>
 	<parameter name="subreport" class="net.sf.jasperreports.engine.JasperReport"/>
-	<parameter name="datasource" class="java.util.List"/>
-	<field name="datasource" class="java.util.List"/>
+	<parameter name="datasource_param" class="java.util.Map"/>
+	<parameter name="no" class="java.lang.String"/>
+	<parameter name="waktu" class="java.lang.String"/>
+	<parameter name="noKartu" class="java.lang.String"/>
+	<parameter name="nama" class="java.lang.String"/>
+	<parameter name="type" class="java.lang.String"/>
+	<parameter name="akses" class="java.lang.String"/>
+	<field name="datasource" class="java.util.Map"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -78,13 +84,11 @@
 		<band height="70" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="550" height="70" uuid="56f79d4f-a6d5-46c4-8632-b2c473466d21"/>
+				<parametersMapExpression><![CDATA[$P{datasource_param}]]></parametersMapExpression>
 				<subreportParameter name="subreport">
 					<subreportParameterExpression><![CDATA[$P{subreport}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="datasource">
-					<subreportParameterExpression><![CDATA[$P{datasource}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{datasource})]]></dataSourceExpression>
+				<dataSourceExpression><![CDATA[new JREmptyDataSource()]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{subreport}]]></subreportExpression>
 			</subreport>
 		</band>

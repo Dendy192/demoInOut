@@ -40,7 +40,6 @@ public class ReportServiceImpl implements ReportService {
         test.put("datasource", subDataSource);
         parameters.put("datasource_param",test);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-        JasperViewer.viewReport(jasperPrint);
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
@@ -91,7 +90,7 @@ public class ReportServiceImpl implements ReportService {
                 Map<String, Object> mapData = new HashMap();
                 mapData.put("waktu", v.getWaktu());
                 mapData.put("noKartu", v.getNoKartu());
-                mapData.put("name", v.getNama());
+                mapData.put("nama", v.getNama());
                 mapData.put("type", v.getType());
                 mapData.put("akses", v.getAkess());
                 map.add(mapData);
