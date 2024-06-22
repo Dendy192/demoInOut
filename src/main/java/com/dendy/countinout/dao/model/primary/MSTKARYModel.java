@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "MSTKARY")
 public class MSTKARYModel {
@@ -29,37 +31,14 @@ public class MSTKARYModel {
     @Column(name = "MSTPASS")
     private String pass;
 
-    public String getPass() {
-        return pass;
-    }
+    @Column(name = "MSTACTIVE")
+    private int status;
 
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
+    @Column(name = "MSTVALID")
+    private Date berlaku;
 
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-
-    public String getPerusahaan() {
-        return perusahaan;
-    }
-
-    public void setPerusahaan(String perusahaan) {
-        this.perusahaan = perusahaan;
-    }
-
-    public String getNoKartu() {
-        return noKartu;
-    }
-
-    public void setNoKartu(String noKartu) {
-        this.noKartu = noKartu;
-    }
+    @Column(name = "MSTUNV")
+    private int unv;
 
     public String getId() {
         return id;
@@ -83,5 +62,61 @@ public class MSTKARYModel {
 
     public void setJabatan(String jabatan) {
         this.jabatan = jabatan;
+    }
+
+    public String getNoKartu() {
+        return noKartu;
+    }
+
+    public void setNoKartu(String noKartu) {
+        this.noKartu = noKartu;
+    }
+
+    public String getPerusahaan() {
+        return perusahaan;
+    }
+
+    public void setPerusahaan(String perusahaan) {
+        this.perusahaan = perusahaan;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getBerlaku() {
+        return berlaku;
+    }
+
+    public void setBerlaku(Date berlaku) {
+        this.berlaku = berlaku;
+    }
+
+    public int getUnv() {
+        return unv;
+    }
+
+    public void setUnv(int unv) {
+        this.unv = unv;
     }
 }

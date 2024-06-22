@@ -58,4 +58,9 @@ public class DateUtils {
         LocalDateTime endOfDay = localDate.atTime(LocalTime.MAX).withNano(0);
         return Timestamp.valueOf(endOfDay);
     }
+
+    public static String dateSqlToString(java.sql.Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        return dateFormat.format(date);
+    }
 }

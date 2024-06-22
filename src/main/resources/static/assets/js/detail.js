@@ -26,6 +26,11 @@ $(document).ready(function () {
         },
     });
 
+    $("#multi-filter-select tbody").on('click ', 'tr', function () {
+        let check = $("#multi-filter-select").DataTable().row(this).data();
+        let param = "?id="+check[4];
+        window.location.href =karyawanDetail+param;
+    })
 });
 
 
