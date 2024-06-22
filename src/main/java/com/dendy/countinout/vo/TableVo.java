@@ -1,13 +1,18 @@
 package com.dendy.countinout.vo;
 
 public class TableVo {
-    private String waktu;
-    private String noKartu;
-    private String nama;
-    private String perushaan;
-    private String departement;
-    private String status;
     private String foto;
+    private String waktu;
+
+    private String lokasi;
+    private String status;
+    private String noKartu;
+    private String kartu;
+    private String nama;
+    private String jabatan;
+    private String zona;
+    private String perushaan;
+
 
     public String getWaktu() {
         return waktu;
@@ -41,12 +46,36 @@ public class TableVo {
         this.perushaan = perushaan;
     }
 
-    public String getDepartement() {
-        return departement;
+    public String getLokasi() {
+        return lokasi;
     }
 
-    public void setDepartement(String departement) {
-        this.departement = departement;
+    public void setLokasi(String lokasi) {
+        this.lokasi = lokasi;
+    }
+
+    public String getKartu() {
+        return kartu;
+    }
+
+    public void setKartu(String kartu) {
+        this.kartu = kartu;
+    }
+
+    public String getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
     }
 
     public String getStatus() {

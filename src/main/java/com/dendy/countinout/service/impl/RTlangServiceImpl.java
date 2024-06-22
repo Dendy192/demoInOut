@@ -177,10 +177,11 @@ public class RTlangServiceImpl implements RTLangService {
     }
 
     public HashMap mappingGate(HashMap map) {
-        HashMap result = new HashMap<>();
+        LinkedHashMap result = new LinkedHashMap<>();
         List<TRNKRTLANGModel> in = (List<TRNKRTLANGModel>) map.get(LabelUtils.tapIn);
         List<TRNKRTLANGModel> out = (List<TRNKRTLANGModel>) map.get(LabelUtils.tapOut);
         List<GateVo> getGate = gateService.getAllGate();
+
         for (GateVo gV : getGate) {
             result.put(gV.getName(), new HashMap<>());
         }

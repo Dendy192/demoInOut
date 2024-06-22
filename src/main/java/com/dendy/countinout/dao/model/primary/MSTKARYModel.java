@@ -26,6 +26,16 @@ public class MSTKARYModel {
 
     @Column(name = "MSTPIC")
     private String pic;
+    @Column(name = "MSTPASS")
+    private String pass;
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 
     public String getPic() {
         return pic;

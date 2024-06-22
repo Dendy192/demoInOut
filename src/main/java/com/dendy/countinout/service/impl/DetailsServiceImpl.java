@@ -73,11 +73,13 @@ public class DetailsServiceImpl implements DetailsService {
                     generateDetailVo.setNoKartu(mstkaryModel.getId());
                     generateDetailVoList.add(generateDetailVo);
 
+                    vo.setJabatan(mstkaryModel.getJabatan());
+                    vo.setZona(mstkaryModel.getPass());
+                    vo.setKartu("1");
                     vo.setFoto(mstkaryModel.getId());
                     vo.setNama(mstkaryModel.getNama());
-                    vo.setDepartement(mstkaryModel.getJabatan());
                     vo.setPerushaan(mstkaryModel.getPerusahaan());
-                    vo.setNoKartu(modelIn.getId());
+                    vo.setNoKartu(mstkaryModel.getId());
                     tableVoList.add(vo);
 
                 } else {
@@ -98,10 +100,12 @@ public class DetailsServiceImpl implements DetailsService {
                 if (optional.isPresent()) {
                     MSTKARYModel mstkaryModel = optional.get();
                     vo.setNama(mstkaryModel.getNama());
-                    vo.setDepartement(mstkaryModel.getJabatan());
                     vo.setPerushaan(mstkaryModel.getPerusahaan());
                     vo.setFoto(mstkaryModel.getId());
-                    vo.setNoKartu(modelOut.getId());
+                    vo.setNoKartu(mstkaryModel.getId());
+                    vo.setJabatan(mstkaryModel.getJabatan());
+                    vo.setZona(mstkaryModel.getPass());
+                    vo.setKartu("1");
                     generateDetailVo.setType("KARYWAN");
                     generateDetailVo.setNama(mstkaryModel.getNama());
                     generateDetailVo.setNoKartu(mstkaryModel.getId());

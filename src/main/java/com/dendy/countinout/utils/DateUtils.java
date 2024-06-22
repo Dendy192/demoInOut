@@ -24,7 +24,7 @@ public class DateUtils {
 
     public static String convertDateTimeToTimeString(Timestamp data) throws ParseException {
         LocalDateTime localDateTime = data.toLocalDateTime();
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
         String result = localDateTime.format(timeFormatter);
         return result;
     }
@@ -55,7 +55,7 @@ public class DateUtils {
     public static Timestamp toEndOfDay(Timestamp timestamp) {
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
         LocalDate localDate = localDateTime.toLocalDate();
-        LocalDateTime endOfDay = localDate.atTime(LocalTime.MAX);
+        LocalDateTime endOfDay = localDate.atTime(LocalTime.MAX).withNano(0);
         return Timestamp.valueOf(endOfDay);
     }
 }

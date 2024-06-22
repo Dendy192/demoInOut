@@ -200,28 +200,30 @@
                                             <th>Nama</th>
                                             <th>Jabatan</th>
                                             <th>Zona</th>
-                                            <th>Perushaaan</th>
+                                            <th>Perusahan</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-<%--                                        <c:if test="${not empty data}">--%>
-<%--                                            <c:forEach var="vo" items="${data}">--%>
-<%--                                                <tr>--%>
-<%--                                                    <td><img src="<c:url value="/images/${vo.foto}"/>"--%>
-<%--                                                             class="thumbnail"/>--%>
-<%--                                                    </td>--%>
-<%--                                                    <td>${vo.waktu}</td>--%>
-<%--                                                    <td>${vo.noKartu}</td>--%>
-<%--                                                    <td>${vo.nama}</td>--%>
-<%--                                                    <td>${vo.perushaan}</td>--%>
-<%--                                                    <td>${vo.departement}</td>--%>
-<%--                                                    <td>${vo.status}</td>--%>
+                                        <c:if test="${not empty data}">
+                                            <c:forEach var="vo" items="${data}">
+                                                <tr>
+                                                    <td><img src="<c:url value="/images/${vo.foto}"/>"
+                                                             class="thumbnail"/>
+                                                    </td>
+                                                    <td>${vo.waktu}</td>
+                                                    <td>${gate}</td>
+                                                    <td>${vo.status}</td>
+                                                    <td>${vo.noKartu}</td>
+                                                    <td>${vo.kartu}</td>
+                                                    <td>${vo.nama}</td>
+                                                    <td>${vo.jabatan}</td>
+                                                    <td>${vo.zona}</td>
+                                                    <td>${vo.perushaan}</td>
+                                                </tr>
+                                            </c:forEach>
 
-<%--                                                </tr>--%>
-<%--                                            </c:forEach>--%>
-
-<%--                                        </c:if>--%>
+                                        </c:if>
 
                                         </tbody>
                                     </table>

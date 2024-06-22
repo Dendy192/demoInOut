@@ -211,12 +211,12 @@
                     </div>
                 </div>
 
-            </div>
 
-            <div class="row"><br/></div>
-            <div class="row" id="countCard">
-            </div>
-            <div class="row" id="cart">
+                <div class="row"><br/></div>
+                <div class="row" id="countCard">
+                </div>
+                <div class="row" id="cart">
+                </div>
             </div>
         </div>
     </div>

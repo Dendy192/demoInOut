@@ -1,9 +1,6 @@
 package com.dendy.countinout.dao.model.primary;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
@@ -11,13 +8,14 @@ import java.sql.Timestamp;
 @Table(name = "TRNKRTLANG")
 public class TRNKRTLANGModel {
 
-    @Id
+
     @Column(name = "TRNID")
     private String id;
 
     @Column(name = "TRNCARDNO")
     private String cardNo;
 
+    @Id
     @Column(name = "TRNTIMEIN")
     private Timestamp tapMasuk;
 
