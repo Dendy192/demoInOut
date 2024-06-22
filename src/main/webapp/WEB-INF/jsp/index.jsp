@@ -78,7 +78,7 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
                     <li class="nav-item">
-                        <a href="index copy.html">
+                        <a href="<c:url value="/dashboard"/> ">
                             <i class="fas fa-home"></i>
                             <p>Dashboard</p>
                         </a>
