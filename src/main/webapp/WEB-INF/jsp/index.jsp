@@ -44,76 +44,183 @@
 </head>
 <body style="background-color: #f1f1f1">
 <div class="wrapper">
-    <div class="page-inner">
-        <div
-                class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
-        >
-            <div>
-                <h3 class="fw-bold mb-3">Dashboard</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="card card-round">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td><h4>Tanggal</h4></td>
-                                <td>
-                                    <div class="form-group">
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                id="input_from"
-                                                placeholder="dd-mm-yyyy"
-                                        />
-                                    </div>
-                                </td>
-                                <td><h4>S/D</h4></td>
-                                <td>
-                                    <div class="form-group">
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                id="input_to"
-                                                placeholder="dd-mm-yyyy"
-                                        />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-info" id="searchBtn">
-                                            Search
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <button
-                                                type="button"
-                                                class="btn btn-info"
-                                                hidden="hidden"
-                                                id="backBtn"
-                                        >
-                                            back
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+    <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+                <button
+                        class="navbar-toggler sidenav-toggler ms-auto"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="collapse"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+              <span class="navbar-toggler-icon">
+                <i class="gg-menu-right"></i>
+              </span>
+                </button>
+                <button class="topbar-toggler more">
+                    <i class="icon-options-vertical"></i>
+                </button>
+                <div class="nav-toggle">
+                    <button class="btn btn-toggle toggle-sidebar">
+                        <i class="gg-menu-right"></i>
+                    </button>
+                    <button class="btn btn-toggle sidenav-toggler">
+                        <i class="gg-menu-left"></i>
+                    </button>
                 </div>
             </div>
-            <div class="col"></div>
-            <div class="col"></div>
+            <!-- End Logo Header -->
         </div>
-
-        <div class="row"><br/></div>
-        <div class="row" id="countCard">
-        </div>
-        <div class="row" id="cart">
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+                <ul class="nav nav-secondary">
+                    <li class="nav-item">
+                        <a href="index copy.html">
+                            <i class="fas fa-home"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                </ul>
+                <!-- <ul class="nav nav-secondary">
+                  <li class="nav-item">
+                    <a href="karyawan.html">
+                      <i class="fas fa-address-card"></i>
+                      <p>Karyawan Data</p>
+                    </a>
+                  </li>
+                </ul> -->
+            </div>
         </div>
     </div>
+    <!-- End Sidebar -->
+    <div class="main-panel">
+        <div class="main-header">
+            <div class="main-header-logo">
+                <!-- Logo Header -->
+                <div class="logo-header" data-background-color="dark">
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
+                        </button>
+                    </div>
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
+                </div>
+                <!-- End Logo Header -->
+            </div>
+            <!-- Navbar Header -->
+            <nav
+                    class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+                    data-background-color="dark"
+            >
+                <div class="container-fluid">
+                    <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                        <li class="nav-item topbar-user dropdown hidden-caret">
+                            <a
+                                    class="dropdown-toggle profile-pic"
+                                    data-bs-toggle="dropdown"
+                                    href="#"
+                                    aria-expanded="false"
+                            >
+                                <div class="avatar-sm">
+                                    <img
+                                            src="<c:url value="assets/img/user.png"/>"
+                                            alt="..."
+                                            class="avatar-img rounded-circle"
+                                    />
+                                </div>
+                                <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">Hizrian</span>
+                    </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                <div class="dropdown-user-scroll scrollbar-outer">
+                                    <li>
+                                        <a class="dropdown-item" href="#">Logout</a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Dashboard</h3>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            <h6>Tanggal</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="input_from"
+                                                    placeholder="dd-mm-yyyy"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            <h6>S/D</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="input_to"
+                                                    placeholder="dd-mm-yyyy"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            <button
+                                                    type="button"
+                                                    class="btn btn-info"
+                                                    id="searchBtn"
+                                            >
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row"><br/></div>
+            <div class="row" id="countCard">
+            </div>
+            <div class="row" id="cart">
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <!--   Core JS Files   -->
@@ -124,7 +231,8 @@
 <!-- Chart JS -->
 <script src="<c:url value="assets/js/plugin/chart.js/chart.min.js"/>"></script>
 <script src="<c:url value="assets/js/plugin/datepicker/bootstrap-datepicker.js"/>"></script>
-
+<!-- jQuery Scrollbar -->
+<script src="<c:url value="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"/>"></script>
 
 <!-- jQuery Sparkline -->
 <script src="<c:url value="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"/>"></script>
