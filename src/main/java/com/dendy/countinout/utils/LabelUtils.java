@@ -7,4 +7,11 @@ public class LabelUtils {
     public static String result = "result";
     public static String tapIn = "tapIn";
     public static String tapOut = "tapOut";
+//    messages
+    public static String typeSuccess = "success";
+    public static String cssSuccess = "success";
+
+    public static String typeError = "error";
+    public static String cssError = "danger";
+    public static String loginContentError = "Username/password invalid";
 }
