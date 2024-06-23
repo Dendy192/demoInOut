@@ -72,7 +72,7 @@
 	<detail>
 		<band height="70" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="550" height="70" uuid="56f79d4f-a6d5-46c4-8632-b2c473466d21"/>
+				<reportElement x="0" y="0" width="555" height="70" uuid="56f79d4f-a6d5-46c4-8632-b2c473466d21"/>
 				<parametersMapExpression><![CDATA[$P{datasource_param}]]></parametersMapExpression>
 				<subreportParameter name="subreport">
 					<subreportParameterExpression><![CDATA[$P{subreport}]]></subreportParameterExpression>
@@ -85,7 +85,7 @@
 	<pageFooter>
 		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement x="450" y="0" width="100" height="30" uuid="7f92244f-320f-4282-9874-aa9433faa9e1"/>
+				<reportElement x="455" y="0" width="100" height="30" uuid="7f92244f-320f-4282-9874-aa9433faa9e1"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

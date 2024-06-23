@@ -57,7 +57,7 @@ public class ReportServiceImpl implements ReportService {
         row.createCell(2).setCellValue(vo.getTanggal());
         rowId++;
         row = sheet.createRow(rowId++);
-        String[] headers = {"No", "Waktu", "No Kartu", "Nama", "Type", "Akess"};
+        String[] headers = {"No", "Waktu", "No Kartu", "Nama", "Perusahaan","Jabatan","Zona", "Akess"};
         for (int col = 0; col < headers.length; col++) {
             row.createCell(col+1).setCellValue(headers[col]);
         }
@@ -68,8 +68,10 @@ public class ReportServiceImpl implements ReportService {
             row.createCell(2).setCellValue(detail.getWaktu());
             row.createCell(3).setCellValue(detail.getNoKartu());
             row.createCell(4).setCellValue(detail.getNama());
-            row.createCell(5).setCellValue(detail.getType());
-            row.createCell(6).setCellValue(detail.getAkess());
+            row.createCell(5).setCellValue(detail.getPerusahaan());
+            row.createCell(6).setCellValue(detail.getJabatan());
+            row.createCell(7).setCellValue(detail.getZona());
+            row.createCell(8).setCellValue(detail.getAkess());
             no++;
         }
 
@@ -91,7 +93,9 @@ public class ReportServiceImpl implements ReportService {
                 mapData.put("waktu", v.getWaktu());
                 mapData.put("noKartu", v.getNoKartu());
                 mapData.put("nama", v.getNama());
-                mapData.put("type", v.getType());
+                mapData.put("perusahaan", v.getPerusahaan());
+                mapData.put("jabatan", v.getJabatan());
+                mapData.put("zona", v.getZona());
                 mapData.put("akses", v.getAkess());
                 map.add(mapData);
             }

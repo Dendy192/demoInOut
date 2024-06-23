@@ -62,15 +62,18 @@ public class DetailsServiceImpl implements DetailsService {
                 vo.setWaktu(DateUtils.convertDateTimeToTimeString(modelIn.getTapMasuk()));
                 vo.setStatus("In");
                 generateDetailVo.setWaktu(DateUtils.convertDateTimeToTimeStringFull(modelIn.getTapMasuk()));
-                generateDetailVo.setAkess("MASUK/1");
+                generateDetailVo.setAkess("MASUK");
                 Optional<MSTKARYModel> optional = mstkaryService.findMSTKARYModelById(modelIn.getId());
                 if (optional.isPresent()) {
                     MSTKARYModel mstkaryModel = optional.get();
 
 
-                    generateDetailVo.setType("KARYWAN");
                     generateDetailVo.setNama(mstkaryModel.getNama());
                     generateDetailVo.setNoKartu(mstkaryModel.getId());
+
+                    generateDetailVo.setPerusahaan(mstkaryModel.getPerusahaan());
+                    generateDetailVo.setJabatan(mstkaryModel.getJabatan());
+                    generateDetailVo.setZona(mstkaryModel.getPass());
                     generateDetailVoList.add(generateDetailVo);
 
                     vo.setJabatan(mstkaryModel.getJabatan());
@@ -95,7 +98,7 @@ public class DetailsServiceImpl implements DetailsService {
                 vo.setWaktu(DateUtils.convertDateTimeToTimeString(modelOut.getTapKeluar()));
                 vo.setStatus("Out");
                 generateDetailVo.setWaktu(DateUtils.convertDateTimeToTimeStringFull(modelOut.getTapKeluar()));
-                generateDetailVo.setAkess("KELUAR/1");
+                generateDetailVo.setAkess("KELUAR");
                 Optional<MSTKARYModel> optional = mstkaryService.findMSTKARYModelById(modelOut.getId());
                 if (optional.isPresent()) {
                     MSTKARYModel mstkaryModel = optional.get();
@@ -106,7 +109,9 @@ public class DetailsServiceImpl implements DetailsService {
                     vo.setJabatan(mstkaryModel.getJabatan());
                     vo.setZona(mstkaryModel.getPass());
                     vo.setKartu("1");
-                    generateDetailVo.setType("KARYWAN");
+                    generateDetailVo.setPerusahaan(mstkaryModel.getPerusahaan());
+                    generateDetailVo.setJabatan(mstkaryModel.getJabatan());
+                    generateDetailVo.setZona(mstkaryModel.getPass());
                     generateDetailVo.setNama(mstkaryModel.getNama());
                     generateDetailVo.setNoKartu(mstkaryModel.getId());
                     generateDetailVoList.add(generateDetailVo);

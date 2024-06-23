@@ -4,8 +4,9 @@ public class GenerateDetailVo {
     private String waktu;
     private String noKartu;
     private String nama;
-    private String type;
-
+    private String perusahaan;
+    private String jabatan;
+    private String zona;
     private String akess;
 
     public String getWaktu() {
@@ -32,12 +33,28 @@ public class GenerateDetailVo {
         this.nama = nama;
     }
 
-    public String getType() {
-        return type;
+    public String getPerusahaan() {
+        return perusahaan;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPerusahaan(String perusahaan) {
+        this.perusahaan = perusahaan;
+    }
+
+    public String getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
     }
 
     public String getAkess() {
