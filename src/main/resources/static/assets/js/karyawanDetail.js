@@ -38,7 +38,13 @@ editBtn.addEventListener("click", function () {
   removeAttributeComponent("hapusKTPBtn");
 });
 cancelBtn.addEventListener("click", function () {
-  window.location.href = "karyawanDetail.html";
+  let currentUrl = window.location.href;
+  let url = new URL(currentUrl);
+  let params = new URLSearchParams(url.search);
+  let id = params.get('id');
+  let urlBack = karyawanDetail+"?id="+id;
+
+  window.location.href = urlBack;
 });
 $(document).ready(function () {
   var inputs = document.querySelectorAll("input");
