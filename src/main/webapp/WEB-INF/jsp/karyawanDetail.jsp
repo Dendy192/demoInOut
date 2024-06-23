@@ -150,7 +150,7 @@
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
                                 <div class="dropdown-user-scroll scrollbar-outer">
                                     <li>
-                                        <a class="dropdown-item" href="#">Logout</a>
+                                        <a class="dropdown-item" href="<c:url value="/logout"/>" >Logout</a>
                                     </li>
                                 </div>
                             </ul>
