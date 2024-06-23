@@ -84,20 +84,20 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
                     <li class="nav-item">
-                        <a href="index copy.html">
+                        <a href="<c:url value="/dashboard"/> ">
                             <i class="fas fa-home"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                 </ul>
-                <!-- <ul class="nav nav-secondary">
-                  <li class="nav-item">
-                    <a href="karyawan.html">
-                      <i class="fas fa-address-card"></i>
-                      <p>Karyawan Data</p>
-                    </a>
-                  </li>
-                </ul> -->
+                <ul class="nav nav-secondary">
+                    <li class="nav-item">
+                        <a href="<c:url value="/karyawanData"/>">
+                            <i class="fas fa-address-card"></i>
+                            <p>Karyawan Data</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
                             >
                                 <div class="avatar-sm">
                                     <img
-                                            src="assets/img/user.png"
+                                            src="<c:url value="assets/img/user.png"/>"
                                             alt="..."
                                             class="avatar-img rounded-circle"
                                     />

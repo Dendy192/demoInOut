@@ -84,14 +84,14 @@
                         </a>
                     </li>
                 </ul>
-                <!-- <ul class="nav nav-secondary">
-                  <li class="nav-item">
-                    <a href="karyawan.html">
-                      <i class="fas fa-address-card"></i>
-                      <p>Karyawan Data</p>
-                    </a>
-                  </li>
-                </ul> -->
+                <ul class="nav nav-secondary">
+                    <li class="nav-item">
+                        <a href="<c:url value="/karyawanData"/>">
+                            <i class="fas fa-address-card"></i>
+                            <p>Karyawan Data</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -243,7 +243,7 @@
 <!-- Date Picker -->
 <script src="<c:url value="assets/js/popper.min.js"/>"></script>
 <script src="<c:url value="assets/js/rome.js"/>"></script>
-<script src="<c:url value="assets/js/main.js"/>"></script>
+<script src="<c:url value="assets/js/dashboard.js"/>"></script>
 
 </body>
 </html>

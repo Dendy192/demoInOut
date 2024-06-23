@@ -8,6 +8,7 @@ import com.dendy.countinout.dao.service.secondary.PIC001Service;
 import com.dendy.countinout.dao.service.secondary.PIC006Service;
 import com.dendy.countinout.form.KaryawanForm;
 import com.dendy.countinout.service.KaryawanService;
+import com.dendy.countinout.vo.KaryawanTableVo;
 import com.dendy.countinout.vo.KaryawanVo;
 import com.dendy.countinout.vo.PerusahaanVo;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,7 +61,7 @@ public class KaryawanController {
         form.setFoto(foto);
         form.setFotoKtp(ktpFoto);
         karyawanService.saveKaryawan(form);
-        return "redirect:"+referer;
+        return "redirect:karyawanData";
     }
 
     @RequestMapping("/ktp/{id}")
@@ -69,5 +70,12 @@ public class KaryawanController {
         response.setContentType("image/jpeg"); // or "image/png" or other image formats
         response.getOutputStream().write(model.getData());
         response.getOutputStream().close();
+    }
+
+    @RequestMapping(value = "/karyawanData")
+    public String karyawanDataPage(HttpServletRequest request, HttpServletResponse response){
+        List<KaryawanVo> vo = karyawanService.getKaryawanData();
+        request.getSession().setAttribute("karyawans",vo);
+        return "karyawan";
     }
 }

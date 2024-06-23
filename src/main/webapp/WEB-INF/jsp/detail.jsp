@@ -92,14 +92,14 @@
                         </a>
                     </li>
                 </ul>
-                <!-- <ul class="nav nav-secondary">
-                  <li class="nav-item">
-                    <a href="karyawan.html">
-                      <i class="fas fa-address-card"></i>
-                      <p>Karyawan Data</p>
-                    </a>
-                  </li>
-                </ul> -->
+                <ul class="nav nav-secondary">
+                    <li class="nav-item">
+                        <a href="<c:url value="/karyawanData"/>">
+                            <i class="fas fa-address-card"></i>
+                            <p>Karyawan Data</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

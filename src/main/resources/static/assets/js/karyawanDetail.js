@@ -13,7 +13,7 @@ function styleDisplay(id, display) {
 function submitForm(){
   document.getElementById("karyawanForm").submit();
 }
-console.log();
+
 const editBtn = document.getElementById("editBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 editBtn.addEventListener("click", function () {
@@ -23,7 +23,7 @@ editBtn.addEventListener("click", function () {
   styleDisplay("submitDiv", "block");
   rome(input_to, {
     dateValidator: rome.val.afterEq(new Date()),
-    inputFormat: "DD-MMM-YYYY",
+    inputFormat: "DD MMM YYYY",
     time: false,
   });
   var inputs = document.querySelectorAll("input");

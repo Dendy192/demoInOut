@@ -16,17 +16,6 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="30" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="310" height="30" uuid="724022ee-9dd8-4c24-8569-bc5b33834552"/>
-				<textElement textAlignment="Left">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ZONA TECHNOLOGY INDONESIA]]></text>
-			</staticText>
-		</band>
-	</title>
 	<columnHeader>
 		<band height="70" splitType="Stretch">
 			<staticText>

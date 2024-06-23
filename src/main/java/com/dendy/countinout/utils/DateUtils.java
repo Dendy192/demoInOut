@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateUtils {
     public static Timestamp getTimeSql() {
@@ -24,7 +25,7 @@ public class DateUtils {
 
     public static String convertDateTimeToTimeString(Timestamp data) throws ParseException {
         LocalDateTime localDateTime = data.toLocalDateTime();
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy HH:mm:ss", new Locale("id", "ID"));
         String result = localDateTime.format(timeFormatter);
         return result;
     }

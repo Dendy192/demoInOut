@@ -6,27 +6,18 @@ import com.dendy.countinout.service.DetailsService;
 import com.dendy.countinout.service.RTLangService;
 import com.dendy.countinout.service.ReportService;
 import com.dendy.countinout.utils.LabelUtils;
-import com.dendy.countinout.vo.DateVo;
 import com.dendy.countinout.vo.GenerateVo;
 import com.dendy.countinout.vo.TapInOutVo;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.http.HttpResponse;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -55,7 +46,7 @@ public class DashboardController {
 
     @RequestMapping(value = "/dashboard")
     public String getTapinandOutToday() {
-        return "index";
+        return "dashboard";
     }
 
     @RequestMapping(value = "/getData")
