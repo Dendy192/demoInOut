@@ -43,4 +43,10 @@ public class LoginController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/logout")
+    public String logOut(HttpServletRequest request){
+        request.getSession().removeAttribute("usernameLogin");
+        return "redirect:/";
+    }
+
 }
