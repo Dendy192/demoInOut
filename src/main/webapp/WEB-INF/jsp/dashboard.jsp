@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
-<%@include file="UrlDefint.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +137,7 @@
                                 </div>
                                 <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold">${usernameLogin}</span>
                     </span>
                             </a>
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -222,7 +221,7 @@
     </div>
 </div>
 </div>
-
+<%@include file="UrlDefint.jsp" %>
 <!--   Core JS Files   -->
 <script src="<c:url value="assets/js/core/jquery-3.7.1.min.js"/> "></script>
 <script src="<c:url value="assets/js/core/popper.min.js"/>"></script>

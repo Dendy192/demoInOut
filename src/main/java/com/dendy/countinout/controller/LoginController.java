@@ -31,7 +31,7 @@ public class LoginController {
         List<SYSACCESModel> sysaccesModel = sysaccesService.findAll();
         for (SYSACCESModel model : sysaccesModel) {
             if (form.getUsername().equalsIgnoreCase(model.getUsername())) {
-                request.getSession().setAttribute("username", form.getUsername());
+                request.getSession().setAttribute("usernameLogin", form.getUsername());
                 return "redirect:/dashboard";
             }
         }

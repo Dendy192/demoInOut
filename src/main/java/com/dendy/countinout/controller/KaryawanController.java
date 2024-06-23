@@ -8,8 +8,10 @@ import com.dendy.countinout.dao.service.secondary.PIC001Service;
 import com.dendy.countinout.dao.service.secondary.PIC006Service;
 import com.dendy.countinout.form.KaryawanForm;
 import com.dendy.countinout.service.KaryawanService;
+import com.dendy.countinout.utils.MessageHelperUtils;
 import com.dendy.countinout.vo.KaryawanTableVo;
 import com.dendy.countinout.vo.KaryawanVo;
+import com.dendy.countinout.vo.MessageVo;
 import com.dendy.countinout.vo.PerusahaanVo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,17 +39,22 @@ public class KaryawanController {
 
     @RequestMapping(value = "/karyawanDetail")
     public String kayryawanDetail(@RequestParam String id, HttpServletRequest request, @ModelAttribute KaryawanForm form) {
-        List<MSTPERUSHModel> mstperushModels = mstperushService.findMSTPERUSHModelByStatus(1);
-        List<PerusahaanVo> perusahaanVos = new ArrayList<>();
-        for (MSTPERUSHModel model : mstperushModels) {
-            PerusahaanVo perusahaanVo = new PerusahaanVo();
-            perusahaanVo.setName(model.getName());
-            perusahaanVos.add(perusahaanVo);
+        if (request.getSession().getAttribute("usernameLogin") != null) {
+            List<MSTPERUSHModel> mstperushModels = mstperushService.findMSTPERUSHModelByStatus(1);
+            List<PerusahaanVo> perusahaanVos = new ArrayList<>();
+            for (MSTPERUSHModel model : mstperushModels) {
+                PerusahaanVo perusahaanVo = new PerusahaanVo();
+                perusahaanVo.setName(model.getName());
+                perusahaanVos.add(perusahaanVo);
+            }
+            KaryawanVo vo = karyawanService.getDetailKaryawan(id);
+            request.getSession().setAttribute("perusahaanList", perusahaanVos);
+            request.getSession().setAttribute("karyawan", vo);
+            return "karyawanDetail";
         }
-        KaryawanVo vo = karyawanService.getDetailKaryawan(id);
-        request.getSession().setAttribute("perusahaanList", perusahaanVos);
-        request.getSession().setAttribute("karyawan", vo);
-        return "karyawanDetail";
+        MessageVo vo = MessageHelperUtils.mustLoginFirst();
+        request.getSession().setAttribute("msgLogin", vo);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/saveKaryawan", method = RequestMethod.POST)
@@ -73,9 +80,15 @@ public class KaryawanController {
     }
 
     @RequestMapping(value = "/karyawanData")
-    public String karyawanDataPage(HttpServletRequest request, HttpServletResponse response){
-        List<KaryawanVo> vo = karyawanService.getKaryawanData();
-        request.getSession().setAttribute("karyawans",vo);
-        return "karyawan";
+    public String karyawanDataPage(HttpServletRequest request, HttpServletResponse response) {
+        if (request.getSession().getAttribute("usernameLogin") != null) {
+
+            List<KaryawanVo> vo = karyawanService.getKaryawanData();
+            request.getSession().setAttribute("karyawans", vo);
+            return "karyawan";
+        }
+        MessageVo vo = MessageHelperUtils.mustLoginFirst();
+        request.getSession().setAttribute("msgLogin", vo);
+        return "redirect:/";
     }
 }

@@ -6,7 +6,9 @@ import com.dendy.countinout.service.DetailsService;
 import com.dendy.countinout.service.RTLangService;
 import com.dendy.countinout.service.ReportService;
 import com.dendy.countinout.utils.LabelUtils;
+import com.dendy.countinout.utils.MessageHelperUtils;
 import com.dendy.countinout.vo.GenerateVo;
+import com.dendy.countinout.vo.MessageVo;
 import com.dendy.countinout.vo.TapInOutVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,8 +47,13 @@ public class DashboardController {
     DetailsService detailsService;
 
     @RequestMapping(value = "/dashboard")
-    public String getTapinandOutToday() {
-        return "dashboard";
+    public String getTapinandOutToday(HttpServletRequest request) {
+        if(request.getSession().getAttribute("usernameLogin") != null){
+            return "dashboard";
+        }
+        MessageVo vo = MessageHelperUtils.mustLoginFirst();
+        request.getSession().setAttribute("msgLogin", vo);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/getData")
@@ -67,12 +74,18 @@ public class DashboardController {
 
     @RequestMapping(value = "/details")
     public String detail(HttpServletRequest request, @RequestParam String gateName, @RequestParam String startDate, @RequestParam String endDate) throws ParseException, SQLException {
-        System.out.println(gateName);
-        HashMap result = detailsService.getDetail(gateName, startDate, endDate);
-        request.getSession().setAttribute("gate", gateName);
-        request.getSession().setAttribute("data", result.get(LabelUtils.data));
-        request.getSession().setAttribute("generate", result.get("generate"));
-        return "detail";
+        if(request.getSession().getAttribute("usernameLogin") != null) {
+
+            HashMap result = detailsService.getDetail(gateName, startDate, endDate);
+            request.getSession().setAttribute("gate", gateName);
+            request.getSession().setAttribute("data", result.get(LabelUtils.data));
+            request.getSession().setAttribute("generate", result.get("generate"));
+            return "detail";
+        }
+
+        MessageVo vo = MessageHelperUtils.mustLoginFirst();
+        request.getSession().setAttribute("msgLogin", vo);
+        return "redirect:/";
     }
 
     @GetMapping("/images/{id}")
