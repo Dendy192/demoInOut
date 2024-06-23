@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.dendy.countinout.vo.MessageVo" %><%--
   Created by IntelliJ IDEA.
   User: dtiaw
   Date: 6/14/2024
@@ -167,9 +167,15 @@
                 <div class="page-header">
                     <h3 class="fw-bold mb-3">Karywan Data</h3>
                 </div>
-
-
-                <br/>
+                <% MessageVo m1=(MessageVo) request.getSession().getAttribute("msgKaryawan");
+                    if(m1!=null){
+                %><div class="alert alert-<%=m1.getCssClass()%>" role="alert">
+                <%=m1.getContent() %>
+            </div>
+                <%
+                    }
+                %>
+                <%request.getSession().removeAttribute("msgKaryawan"); %>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">

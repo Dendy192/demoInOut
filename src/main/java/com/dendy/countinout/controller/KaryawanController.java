@@ -68,6 +68,8 @@ public class KaryawanController {
         form.setFoto(foto);
         form.setFotoKtp(ktpFoto);
         karyawanService.saveKaryawan(form);
+        MessageVo vo = MessageHelperUtils.successUpdateData();
+        request.getSession().setAttribute("msgKaryawan", vo);
         return "redirect:karyawanData";
     }
 

@@ -11,4 +11,12 @@ public class MessageHelperUtils {
         vo.setCssClass(LabelUtils.cssError);
         return vo;
     }
+
+    public static MessageVo successUpdateData(){
+        MessageVo vo = new MessageVo();
+        vo.setContent(LabelUtils.successUpdateData);
+        vo.setType(LabelUtils.typeSuccess);
+        vo.setCssClass(LabelUtils.cssSuccess);
+        return vo;
+    }
 }
