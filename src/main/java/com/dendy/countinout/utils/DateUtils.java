@@ -63,4 +63,12 @@ public class DateUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         return dateFormat.format(date);
     }
+
+    public static java.sql.Date stringToDateSQL(String date) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd MMM yyyy");
+        Date date1 = dateFormat1.parse(date);
+        String formattedDateString = dateFormat.format(date1);
+        return java.sql.Date.valueOf(formattedDateString);
+    }
 }

@@ -26,8 +26,7 @@ public class MSTKARYModel {
     @Column(name = "MSTMANDOR")
     private String perusahaan;
 
-    @Column(name = "MSTPIC")
-    private String pic;
+
     @Column(name = "MSTPASS")
     private String pass;
 
@@ -35,7 +34,7 @@ public class MSTKARYModel {
     private int status;
 
     @Column(name = "MSTVALID")
-    private Date berlaku;
+    private java.sql.Date berlaku;
 
     @Column(name = "MSTUNV")
     private int unv;
@@ -80,13 +79,6 @@ public class MSTKARYModel {
         this.perusahaan = perusahaan;
     }
 
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
 
     public String getPass() {
         return pass;
@@ -104,7 +96,7 @@ public class MSTKARYModel {
         this.status = status;
     }
 
-    public Date getBerlaku() {
+    public java.sql.Date getBerlaku() {
         return berlaku;
     }
 

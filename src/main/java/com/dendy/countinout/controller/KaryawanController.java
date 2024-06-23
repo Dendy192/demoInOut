@@ -15,8 +15,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class KaryawanController {
     public String kayryawanDetail(@RequestParam String id, HttpServletRequest request, @ModelAttribute KaryawanForm form) {
         List<MSTPERUSHModel> mstperushModels = mstperushService.findMSTPERUSHModelByStatus(1);
         List<PerusahaanVo> perusahaanVos = new ArrayList<>();
-        for(MSTPERUSHModel model: mstperushModels){
+        for (MSTPERUSHModel model : mstperushModels) {
             PerusahaanVo perusahaanVo = new PerusahaanVo();
             perusahaanVo.setName(model.getName());
             perusahaanVos.add(perusahaanVo);
@@ -47,7 +49,21 @@ public class KaryawanController {
         return "karyawanDetail";
     }
 
-    @GetMapping("/ktp/{id}")
+    @RequestMapping(value = "/saveKaryawan", method = RequestMethod.POST)
+    public String saveKaryawan(@RequestParam(name = "status", required = false) boolean status,
+                               @RequestParam(name = "unlimitid", required = false) boolean unlimitid,
+                               @RequestParam("inputFoto") MultipartFile foto,
+                               @RequestParam("ktpFotoInput") MultipartFile ktpFoto,
+                               @ModelAttribute KaryawanForm form, HttpServletRequest request, @RequestHeader(value = "Referer", required = false) String referer) throws ParseException, IOException {
+        form.setStatus(status);
+        form.setUnlimitid(unlimitid);
+        form.setFoto(foto);
+        form.setFotoKtp(ktpFoto);
+        karyawanService.saveKaryawan(form);
+        return "redirect:"+referer;
+    }
+
+    @RequestMapping("/ktp/{id}")
     public void displayktp(@PathVariable String id, HttpServletResponse response) throws IOException {
         PIC006Model model = pic006Service.findPIC006ModelByPid(id);
         response.setContentType("image/jpeg"); // or "image/png" or other image formats

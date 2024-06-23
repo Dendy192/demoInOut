@@ -36,7 +36,7 @@
         });
     </script>
     <style>
-        #thumbnail {
+        #fotoKtp, #karyawanFoto {
             max-width: 220px; /* Adjust the max-width as needed */
             max-height: 120px; /* Adjust the max-height as needed */
         }
@@ -182,13 +182,14 @@
                     </div>
                     <div class="col-auto" id="submitDiv" style="display: none">
                         <div class="form-group">
-                            <button class="btn btn-info" id="submitBtn">
+                            <button class="btn btn-info" id="submitBtn" onclick="submitForm()">
                                 <i class="fas fa-edit"></i> Submit
                             </button>
                         </div>
                     </div>
                 </div>
-                <form:form id="karyawanForm" action="saveKaryawan" method="post" modelAttribute="karyawanForm"
+                <c:url var="action" value="/saveKaryawan"></c:url>
+                <form:form id="karyawanForm" action="${action}" method="POST" modelAttribute="karyawanForm"
                            enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
@@ -215,6 +216,7 @@
                                                         class="form-check-input"
                                                         id="status"
                                                         type="checkbox"
+                                                        name="status"
                                                     ${karyawan.status}
 
                                                 />
@@ -274,13 +276,15 @@
                                         <div class="col">
                                             <div class="form-group form-group-default">
                                                 <label for="noHP">No. HP</label>
-                                                <form:input path="noHp" type="text" class="form-control" id="noHP" value="${karyawan.noHp}"/>
+                                                <form:input path="noHp" type="text" class="form-control" id="noHP"
+                                                            value="${karyawan.noHp}"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-default">
                                         <label for="jabDiv">Jab/Div</label>
-                                        <form:input path="jab" type="text" class="form-control" id="jabDiv" value="${karyawan.jab}"/>
+                                        <form:input path="jab" type="text" class="form-control" id="jabDiv"
+                                                    value="${karyawan.jab}"/>
                                     </div>
                                     <div class="row">
                                         <div class="col-auto">
@@ -295,7 +299,8 @@
                                                         class="form-check-input"
                                                         id="unlimitid"
                                                         type="checkbox"
-                                                        ${karyawan.unlimitid}
+                                                        name="unlimitid"
+                                                    ${karyawan.unlimitid}
                                                 />
                                                 <label
                                                         class="form-check-label"
@@ -331,7 +336,8 @@
                                                 <img
                                                         class="rounded mx-auto d-block"
                                                         src="<c:url value="/images/${karyawan.foto}"/>"
-                                                        id="thumbnail"
+                                                        id="karyawanFoto"
+                                                        class="thumbnail"
                                                         alt=""
                                                 />
                                             </div>
@@ -351,10 +357,12 @@
                                                         <input
                                                                 path="foto"
                                                                 type="file"
-                                                                id="fileInput"
-                                                                name="fileInput"
+                                                                id="inputFoto"
+                                                                name="inputFoto"
+                                                                accept="image/jpeg"
                                                                 style="display: none"
                                                         />
+                                                        <form:hidden path="fotoStatus"/>
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -382,10 +390,10 @@
                                         <div class="col">
                                             <div class="row">
                                                 <img
-                                                        id="thumbnail"
+                                                        id="fotoKtp"
                                                         class="rounded mx-auto d-block"
                                                         src="<c:url value="/ktp/${karyawan.fotoKtp}"/>"
-                                                        alt=""
+                                                        class="thumbnail"
                                                 />
                                             </div>
                                             <div class="row">
@@ -404,10 +412,12 @@
                                                         <input
                                                                 path="fotoKTP"
                                                                 type="file"
-                                                                id="fileInput"
-                                                                name="fileInput"
+                                                                id="ktpFotoInput"
+                                                                name="ktpFotoInput"
+                                                                accept="image/jpeg"
                                                                 style="display: none"
                                                         />
+                                                        <form:hidden path="fotoKtpStatus"/>
                                                     </div>
                                                 </div>
                                                 <div class="col">

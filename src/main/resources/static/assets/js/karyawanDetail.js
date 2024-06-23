@@ -10,7 +10,9 @@ function removeAttributeComponent(id) {
 function styleDisplay(id, display) {
   document.getElementById(id).style.display = display;
 }
-
+function submitForm(){
+  document.getElementById("karyawanForm").submit();
+}
 console.log();
 const editBtn = document.getElementById("editBtn");
 const cancelBtn = document.getElementById("cancelBtn");
@@ -18,6 +20,7 @@ editBtn.addEventListener("click", function () {
   console.log("masuk sini dah ");
   styleDisplay("cancelDiv", "block");
   styleDisplay("editDiv", "none");
+  styleDisplay("submitDiv", "block");
   rome(input_to, {
     dateValidator: rome.val.afterEq(new Date()),
     inputFormat: "DD-MMM-YYYY",
@@ -45,4 +48,44 @@ $(document).ready(function () {
   inputs.forEach(function (input) {
     input.setAttribute("disabled", true);
   });
+
+});
+$('#hapusFotoBtn').click(function() {
+  $('#karyawanFoto').attr('src', ''); // Clears the src attribute
+  $('#fotoStatus').val("delete")
+
+});
+$('#insertKTPBtn').click(function() {
+  $('#ktpFotoInput').click();
+
+});
+$('#insertFotoBtn').click(function() {
+  $('#inputFoto').click();
+
+});
+$('#ktpFotoInput').change(function() {
+  var input = this;
+  $('#fotoKtpStatus').val("change")
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#fotoKtp').attr('src', e.target.result); // Set src attribute with selected image data
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+});
+$('#inputFoto').change(function() {
+  var input = this;
+  $('#fotoStatus').val("change")
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#karyawanFoto').attr('src', e.target.result); // Set src attribute with selected image data
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+});
+$('#hapusKTPBtn').click(function() {
+  $('#fotoKtp').attr('src', ''); // Clears the src attribute
+  $('#fotoKtpStatus').val("delete")
 });

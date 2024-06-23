@@ -16,6 +16,9 @@ public class KaryawanForm {
 
     private String berlaku;
 
+    private String fotoStatus;
+
+    private String fotoKtpStatus;
     private MultipartFile foto;
     private MultipartFile  fotoKtp;
 
@@ -122,5 +125,21 @@ public class KaryawanForm {
 
     public void setUnlimitid(boolean unlimitid) {
         this.unlimitid = unlimitid;
+    }
+
+    public String getFotoStatus() {
+        return fotoStatus;
+    }
+
+    public void setFotoStatus(String fotoStatus) {
+        this.fotoStatus = fotoStatus;
+    }
+
+    public String getFotoKtpStatus() {
+        return fotoKtpStatus;
+    }
+
+    public void setFotoKtpStatus(String fotoKtpStatus) {
+        this.fotoKtpStatus = fotoKtpStatus;
     }
 }
