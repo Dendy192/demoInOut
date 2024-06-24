@@ -1,5 +1,6 @@
 package com.dendy.countinout.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateVo {
@@ -7,6 +8,10 @@ public class GenerateVo {
     private String company;
     private String tanggal;
     private List<GenerateDetailVo> data;
+
+    public GenerateVo() {
+
+    }
 
     public String getTanggal() {
         return tanggal;
@@ -40,4 +45,11 @@ public class GenerateVo {
     public void setData(List<GenerateDetailVo> data) {
         this.data = data;
     }
+    public GenerateVo(GenerateVo original) {
+        this.gate = original.gate;
+        this.company = original.company;
+        this.tanggal = original.tanggal;
+        this.data = new ArrayList<>(original.data);
+    }
+
 }

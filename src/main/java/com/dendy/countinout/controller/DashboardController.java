@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -102,20 +103,21 @@ public class DashboardController {
     @RequestMapping(value = "/download", method = RequestMethod.POST)
     public ResponseEntity<byte[]> downloadReport(@RequestParam("fileType") String fileType,@RequestParam("searchValue") String searchValue, HttpServletRequest request, HttpServletResponse response ) throws JRException, IOException {
         GenerateVo vo = (GenerateVo) request.getSession().getAttribute("generate");
+        GenerateVo tmp = new GenerateVo(vo);
         searchValue = searchValue.replace(",","");
-        List<GenerateDetailVo> generateDetailVos = filterData(vo.getData(), searchValue);
+        List<GenerateDetailVo> generateDetailVos = filterData(tmp.getData(), searchValue);
         byte[] reportBytes;
         String contentType;
         String fileExtension;
-        vo.setData(generateDetailVos);
+        tmp.setData(generateDetailVos);
 
         if ("pdf".equalsIgnoreCase(fileType)) {
-            reportBytes = reportService.generateReportPdf(vo);
+            reportBytes = reportService.generateReportPdf(tmp);
             contentType = MediaType.APPLICATION_PDF_VALUE;
             fileExtension = "pdf";
         } else if ("xlsx".equalsIgnoreCase(fileType)) {
             // Implement XLSX report generation
-            reportBytes = reportService.generateXLSXReport(vo);
+            reportBytes = reportService.generateXLSXReport(tmp);
             contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             fileExtension = "xlsx";
         } else {
@@ -131,7 +133,7 @@ public class DashboardController {
     }
 
     private List<GenerateDetailVo> filterData(List<GenerateDetailVo> data, String searchValue) {
-        if (searchValue == null || searchValue.isEmpty()) {
+        if (searchValue == null || searchValue.isEmpty() || searchValue.equals("")) {
             return data;
         }
 
@@ -139,4 +141,5 @@ public class DashboardController {
                 .filter(vo -> vo.matchesSearchCriteria(searchValue))
                 .collect(Collectors.toList());
     }
+
 }
