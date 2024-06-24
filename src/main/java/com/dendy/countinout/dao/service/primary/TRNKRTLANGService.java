@@ -13,7 +13,7 @@ public interface TRNKRTLANGService extends JpaRepository<TRNKRTLANGModel, String
     Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByTapMasukBetween(Timestamp startDateTime, Timestamp endDateTime);
     Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByTapKeluarBetween(Timestamp startDateTime, Timestamp endDateTime);
 
-    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByGateMasukAndTapMasukBetween(String gateIn, Timestamp startDateTime, Timestamp endDateTime);
+    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByGateMasukAndTapMasukBetweenOrderByTapMasukDesc(String gateIn, Timestamp startDateTime, Timestamp endDateTime);
 
-    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByGateKeluarAndTapKeluarBetween(String gateIn, Timestamp startDateTime, Timestamp endDateTime);
+    Optional<List<TRNKRTLANGModel>> findTRNKRTLANGModelByGateKeluarAndTapKeluarBetweenOrderByTapKeluarDesc(String gateIn, Timestamp startDateTime, Timestamp endDateTime);
 }

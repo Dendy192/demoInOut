@@ -244,7 +244,7 @@
                                             <div class="form-group form-group-default">
                                                 <label for="ktp">K.T.P</label>
                                                 <form:input path="ktp" type="text" class="form-control" id="ktp"
-                                                            value="${karyawan.ktp}"/>
+                                                            value="${karyawan.ktp}" onkeypress="allowOnlyNumbers(event)"/>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +277,7 @@
                                             <div class="form-group form-group-default">
                                                 <label for="noHP">No. HP</label>
                                                 <form:input path="noHp" type="text" class="form-control" id="noHP"
-                                                            value="${karyawan.noHp}"/>
+                                                            value="${karyawan.noHp}" onkeypress="allowOnlyNumbers(event)"/>
                                             </div>
                                         </div>
                                     </div>

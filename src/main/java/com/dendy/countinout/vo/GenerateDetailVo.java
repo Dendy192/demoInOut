@@ -64,4 +64,9 @@ public class GenerateDetailVo {
     public void setAkess(String akess) {
         this.akess = akess;
     }
+
+    public boolean matchesSearchCriteria(String searchValue) {
+        return this.getNama().equalsIgnoreCase(searchValue);
+    }
+
 }

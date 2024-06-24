@@ -7,6 +7,7 @@ import com.dendy.countinout.service.RTLangService;
 import com.dendy.countinout.service.ReportService;
 import com.dendy.countinout.utils.LabelUtils;
 import com.dendy.countinout.utils.MessageHelperUtils;
+import com.dendy.countinout.vo.GenerateDetailVo;
 import com.dendy.countinout.vo.GenerateVo;
 import com.dendy.countinout.vo.MessageVo;
 import com.dendy.countinout.vo.TapInOutVo;
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class DashboardController {
@@ -97,19 +101,23 @@ public class DashboardController {
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.POST)
-    public ResponseEntity<byte[]> downloadReport(@RequestParam("fileType") String fileType,HttpServletRequest request, HttpServletResponse response ) throws JRException, IOException {
+    public ResponseEntity<byte[]> downloadReport(@RequestParam("fileType") String fileType,@RequestParam("searchValue") String searchValue, HttpServletRequest request, HttpServletResponse response ) throws JRException, IOException {
         GenerateVo vo = (GenerateVo) request.getSession().getAttribute("generate");
+        GenerateVo tmp = new GenerateVo(vo);
+        searchValue = searchValue.replace(",","");
+        List<GenerateDetailVo> generateDetailVos = filterData(tmp.getData(), searchValue);
         byte[] reportBytes;
         String contentType;
         String fileExtension;
+        tmp.setData(generateDetailVos);
 
         if ("pdf".equalsIgnoreCase(fileType)) {
-            reportBytes = reportService.generateReportPdf(vo);
+            reportBytes = reportService.generateReportPdf(tmp);
             contentType = MediaType.APPLICATION_PDF_VALUE;
             fileExtension = "pdf";
         } else if ("xlsx".equalsIgnoreCase(fileType)) {
             // Implement XLSX report generation
-            reportBytes = reportService.generateXLSXReport(vo);
+            reportBytes = reportService.generateXLSXReport(tmp);
             contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             fileExtension = "xlsx";
         } else {
@@ -123,4 +131,15 @@ public class DashboardController {
 
         return ResponseEntity.ok().headers(headers).body(reportBytes);
     }
+
+    private List<GenerateDetailVo> filterData(List<GenerateDetailVo> data, String searchValue) {
+        if (searchValue == null || searchValue.isEmpty() || searchValue.equals("")) {
+            return data;
+        }
+
+        return data.stream()
+                .filter(vo -> vo.matchesSearchCriteria(searchValue))
+                .collect(Collectors.toList());
+    }
+
 }

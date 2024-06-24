@@ -247,8 +247,8 @@
                                 <button type="submit" class="btn btn-primary">download</button>
                             </div>
                         </div>
-
                     </div>
+                    <input type="hidden" id="searchValue" name="searchValue" value="">
                 </form>
             </div>
         </div>

@@ -28,9 +28,19 @@ $(document).ready(function () {
 
     $("#multi-filter-select tbody").on('click ', 'tr', function () {
         let check = $("#multi-filter-select").DataTable().row(this).data();
-        let param = "?id="+check[4];
-        window.location.href =karyawanDetail+param;
+        let param = "?id=" + check[4];
+        window.location.href = karyawanDetail + param;
     })
+
+    $('<input>').attr({
+        type: 'hidden',
+        id: 'searchValue',
+        name: 'searchValue'
+    }).appendTo('form');
+
+    $('#multi-filter-select_filter input').on('input', function () {
+        $('#searchValue').val(this.value);
+    });
 });
 
 
