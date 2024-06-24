@@ -40,10 +40,10 @@ public class KaryawanServiceImpl implements KaryawanService {
         vo.setId(model.getId());
         vo.setTag(model.getNoKartu());
         vo.setPerusahaan(model.getPerusahaan());
-        vo.setKtp("");
+        vo.setKtp(model.getKtp());
         vo.setNama(model.getNama());
         vo.setRuang(model.getPass());
-        vo.setNoHp("");
+        vo.setNoHp(model.getNoHp());
         vo.setJab(model.getJabatan());
         vo.setBerlaku(DateUtils.dateSqlToString(model.getBerlaku()));
         if (model.getUnv() == 1) {
@@ -89,13 +89,13 @@ public class KaryawanServiceImpl implements KaryawanService {
         Optional<MSTKARYModel> mstkaryModel1 = mstkaryService.findMSTKARYModelById(form.getId());
         MSTKARYModel mstkaryModel = mstkaryModel1.get();
         mstkaryModel.setUnv(0);
-        mstkaryModel.setUnv(0);
         if (form.isStatus()) {
             mstkaryModel.setStatus(1);
         }
         if (form.isUnlimitid()) {
             mstkaryModel.setUnv(1);
         }
+
         mstkaryModel.setId(form.getId());
         mstkaryModel.setJabatan(form.getJab());
         mstkaryModel.setPass(form.getRuang());
@@ -103,6 +103,8 @@ public class KaryawanServiceImpl implements KaryawanService {
         mstkaryModel.setNoKartu(form.getTag());
         mstkaryModel.setPerusahaan(form.getPerusahaan());
         mstkaryModel.setNama(form.getNama());
+        mstkaryModel.setKtp(form.getKtp());
+        mstkaryModel.setNoHp(form.getNoHp());
         mstkaryService.save(mstkaryModel);
 
         if (!form.getFotoStatus().isEmpty()) {

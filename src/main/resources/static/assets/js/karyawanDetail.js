@@ -6,7 +6,12 @@
 function removeAttributeComponent(id) {
   document.getElementById(id).removeAttribute("disabled");
 }
-
+function allowOnlyNumbers(event) {
+  var charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    event.preventDefault();
+  }
+}
 function styleDisplay(id, display) {
   document.getElementById(id).style.display = display;
 }
