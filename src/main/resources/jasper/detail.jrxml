@@ -100,10 +100,10 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField>
+							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="32" height="30" uuid="65b3c612-30e9-4d28-9ed7-1ccd134d81fd"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[ $F{waktu} != null && !$F{waktu}.equals("") ? $V{COLUMN_COUNT} : ""]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -130,7 +130,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField textAdjust="StretchHeight">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="75" height="30" uuid="43a557da-e089-4387-839b-4bc777d8b3a6"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{waktu}]]></textFieldExpression>
@@ -160,7 +160,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField textAdjust="StretchHeight">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="60" height="30" uuid="033a27c1-b5d0-4321-b250-fdc551c7a0ac"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{noKartu}]]></textFieldExpression>
@@ -189,7 +189,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField textAdjust="StretchHeight">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="79" height="30" uuid="d3b632ac-3607-43a3-add5-3d4f2c54cb0d"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
@@ -212,7 +212,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField textAdjust="StretchHeight">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="83" height="30" uuid="ee9597ac-1437-424e-9368-d3ed42c78ec9"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{perusahaan}]]></textFieldExpression>
@@ -241,7 +241,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField>
+							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="77" height="30" uuid="86b49451-fa6c-4519-a46c-98bcabd682d0"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -276,7 +276,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField>
+							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="75" height="30" uuid="5a733953-1bb7-4e48-b531-ba18c90ceac3"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -311,7 +311,7 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField textAdjust="StretchHeight">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="74" height="30" uuid="74468458-c7f2-442f-a501-f63aee661880"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
