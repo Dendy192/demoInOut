@@ -49,8 +49,8 @@ public class DetailsServiceImpl implements DetailsService {
         generateVo.setTanggal(DateUtils.convertDateTimeToTimeStringHalf(start) + " s/d " + DateUtils.convertDateTimeToTimeStringHalf(end));
         Timestamp startTime = DateUtils.convertStringToTimeSql(start);
         Timestamp endTime = DateUtils.convertStringToTimeSql(end + " 23:59:58");
-        Optional<List<TRNKRTLANGModel>> oi = trnkrtlangService.findTRNKRTLANGModelByGateMasukAndTapMasukBetween(gateVo.getId(), DateUtils.toStartOfDay(startTime), DateUtils.toEndOfDay(endTime));
-        Optional<List<TRNKRTLANGModel>> oo = trnkrtlangService.findTRNKRTLANGModelByGateKeluarAndTapKeluarBetween(gateVo.getId(), DateUtils.toStartOfDay(startTime), DateUtils.toEndOfDay(endTime));
+        Optional<List<TRNKRTLANGModel>> oi = trnkrtlangService.findTRNKRTLANGModelByGateMasukAndTapMasukBetweenOrderByTapMasukDesc(gateVo.getId(), DateUtils.toStartOfDay(startTime), DateUtils.toEndOfDay(endTime));
+        Optional<List<TRNKRTLANGModel>> oo = trnkrtlangService.findTRNKRTLANGModelByGateKeluarAndTapKeluarBetweenOrderByTapKeluarDesc(gateVo.getId(), DateUtils.toStartOfDay(startTime), DateUtils.toEndOfDay(endTime));
         List<TableVo> tableVoList = new ArrayList<>();
         List<GenerateDetailVo> generateDetailVoList = new ArrayList<>();
         HashMap data = new HashMap<>();
@@ -121,6 +121,18 @@ public class DetailsServiceImpl implements DetailsService {
                 }
             }
         }
+        Collections.sort(tableVoList, new Comparator<TableVo>() {
+            @Override
+            public int compare(TableVo o1, TableVo o2) {
+                return o2.getWaktu().compareTo(o1.getWaktu());
+            }
+        });
+        Collections.sort(generateDetailVoList, new Comparator<GenerateDetailVo>() {
+            @Override
+            public int compare(GenerateDetailVo o1, GenerateDetailVo o2) {
+                return o2.getWaktu().compareTo(o1.getWaktu());
+            }
+        });
         generateVo.setData(generateDetailVoList);
         data.put("generate", generateVo);
         data.put(LabelUtils.data, tableVoList);
