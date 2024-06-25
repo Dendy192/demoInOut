@@ -57,7 +57,7 @@ public class DashboardController {
         }
         MessageVo vo = MessageHelperUtils.mustLoginFirst();
         request.getSession().setAttribute("msgLogin", vo);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/getData")
@@ -89,7 +89,7 @@ public class DashboardController {
 
         MessageVo vo = MessageHelperUtils.mustLoginFirst();
         request.getSession().setAttribute("msgLogin", vo);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/images/{id}")
