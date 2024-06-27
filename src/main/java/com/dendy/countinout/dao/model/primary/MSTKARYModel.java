@@ -39,11 +39,7 @@ public class MSTKARYModel {
     @Column(name = "MSTUNV")
     private int unv;
 
-    @Column(name = "MSTKTP")
-    private String ktp;
 
-    @Column(name = "MSTNOHP")
-    private String noHp;
     public String getId() {
         return id;
     }
@@ -117,19 +113,5 @@ public class MSTKARYModel {
         this.unv = unv;
     }
 
-    public String getKtp() {
-        return ktp;
-    }
-
-    public void setKtp(String ktp) {
-        this.ktp = ktp;
-    }
-
-    public String getNoHp() {
-        return noHp;
-    }
-
-    public void setNoHp(String noHp) {
-        this.noHp = noHp;
-    }
+  
 }
