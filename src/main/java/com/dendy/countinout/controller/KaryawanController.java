@@ -54,7 +54,7 @@ public class KaryawanController {
         }
         MessageVo vo = MessageHelperUtils.mustLoginFirst();
         request.getSession().setAttribute("msgLogin", vo);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/saveKaryawan", method = RequestMethod.POST)
@@ -91,6 +91,6 @@ public class KaryawanController {
         }
         MessageVo vo = MessageHelperUtils.mustLoginFirst();
         request.getSession().setAttribute("msgLogin", vo);
-        return "redirect:/";
+        return "redirect:/login";
     }
 }

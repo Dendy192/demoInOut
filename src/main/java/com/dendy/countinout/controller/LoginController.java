@@ -20,8 +20,11 @@ public class LoginController {
 
     @Autowired
     SYSACCESService sysaccesService;
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String indexPage(@ModelAttribute("loginForm") LoginForm form, HttpServletRequest request) {
+        return "index";
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(@ModelAttribute("loginForm") LoginForm form, HttpServletRequest request) {
         return "index";
     }
@@ -40,13 +43,13 @@ public class LoginController {
         message.setType(LabelUtils.typeError);
         message.setCssClass(LabelUtils.cssError);
         request.getSession().setAttribute("msgLogin", message);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/logout")
     public String logOut(HttpServletRequest request){
         request.getSession().removeAttribute("usernameLogin");
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 }

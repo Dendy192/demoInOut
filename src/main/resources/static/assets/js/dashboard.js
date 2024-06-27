@@ -14,14 +14,15 @@ function cardClicked(gateName) {
     let start = document.getElementById('input_from').value;
     let end = document.getElementById("input_to").value;
 
-    if(start =="" || start == null ){
+    if (start == "" || start == null) {
         start = formattedToday;
-    }if(end == "" || end == null){
+    }
+    if (end == "" || end == null) {
         end = formattedToday;
     }
-    let urlParam = "?gateName="+gateName+"&startDate="+start+"&endDate="+end+"";
+    let urlParam = "?gateName=" + gateName + "&startDate=" + start + "&endDate=" + end + "";
     console.log(gateName)
-    window.location.href =detailUrl+urlParam;
+    window.location.href = detailUrl + urlParam;
 }
 
 
@@ -40,8 +41,8 @@ const options = {
     },
 };
 
-function generateCard(gateName, tapIn, tapOut) {
-    var countCardData = '<div class="col">' +
+function generateCard(gateName, tapIn, tapOut, tapInOut) {
+    var countCardData = '<div class="col-sm-4">' +
         '    <div class="card card-round" onclick="cardClicked(\'' + gateName + '\')">' +
         '        <div class="card-header">' +
         '            <div class="card-head-row">' +
@@ -49,8 +50,32 @@ function generateCard(gateName, tapIn, tapOut) {
         '            </div>' +
         '        </div>' +
         '        <div class="card-body">' +
+        '           <div class="row">' +
+        '               <div class="col">' +
+        '                   <div class="card card-stats card-info card-round">' +
+        '                       <div class="card-body" id="karyawanDalam">' +
+        '                           <div class="row">' +
+        '                                <div class="col-5">' +
+        '                                    <div class="icon-big text-center">' +
+        '                                        <i class="fas fa-user-friends"></i>' +
+        '                                    </div>' +
+        '                                   </div>' +
+        '                               <div class="col col-stats">' +
+        '                                   <div class="numbers">' +
+        '                                       <p class="card-category">' +
+        '                                           Jumlah Karyawan Didalam' +
+        '                                       </p>' +
+        '                                       <h6 class="card-title" style="font-size: 2em">' + tapInOut+
+        '                                       </h6>' +
+        '                                   </div>' +
+        '                               </div>' +
+        '                           </div>' +
+        '                       </div>' +
+        '                   </div>' +
+        '                </div>' +
+        '           </div>' +
         '            <div class="row">' +
-        '                <div class="col">' +
+        '                <div class="col-lg">' +
         '                    <div class="card card-stats card-success card-round">' +
         '                        <div class="card-body">' +
         '                            <div class="row">' +
@@ -59,7 +84,7 @@ function generateCard(gateName, tapIn, tapOut) {
         '                                        <i class="fas fa-check-circle"></i>' +
         '                                    </div>' +
         '                                </div>' +
-        '                                <div class="col-7 col-stats">' +
+        '                                <div class="col col-stats">' +
         '                                    <div class="numbers">' +
         '                                        <p class="card-category">Karyawan Masuk</p>' +
         '                                        <h4 class="card-title">' + tapIn + '</h4>' +
@@ -69,7 +94,7 @@ function generateCard(gateName, tapIn, tapOut) {
         '                        </div>' +
         '                    </div>' +
         '                </div>' +
-        '                <div class="col">' +
+        '                <div class="col-lg">' +
         '                    <div class="card card-stats card-danger card-round">' +
         '                        <div class="card-body">' +
         '                            <div class="row">' +
@@ -78,7 +103,7 @@ function generateCard(gateName, tapIn, tapOut) {
         '                                        <i class="fas fa-times-circle"></i>' +
         '                                    </div>' +
         '                                </div>' +
-        '                                <div class="col-7 col-stats">' +
+        '                                <div class="col col-stats">' +
         '                                    <div class="numbers">' +
         '                                        <p class="card-category">Karyawan Keluar</p>' +
         '                                        <h4 class="card-title">' + tapOut + '</h4>' +
@@ -96,7 +121,7 @@ function generateCard(gateName, tapIn, tapOut) {
 }
 
 function generateCart(gateName) {
-    let myHtml = '<div class="col">' +
+    let myHtml = '<div class="col-sm-4">' +
         '    <div class="card">' +
         '        <div class="card-body">' +
         '            <div class="chart-container">' +
@@ -136,6 +161,11 @@ rome(input_to, {
     time: false,
 });
 $(document).ready(function () {
+    let bodyWidth = document.body.scrollWidth;
+    let bodyHeight = document.body.scrollHeight;
+    window.resizeTo(bodyWidth, bodyHeight);
+
+    // console.log(bodyWidth+" , "+bodyHeight)
     let intervalId;
     $('#backBtn').click(function () {
         window.location.href = dashboardUrl;
@@ -156,7 +186,7 @@ $(document).ready(function () {
 
             $.ajax({
                 url: getDataByDate,
-                data:data1,
+                data: data1,
                 method: 'GET',
                 contentType: 'application/json',
                 success: function (data) {
@@ -171,7 +201,8 @@ $(document).ready(function () {
                         gatePull.push(gateName);
                         const tapIn = data1[i].tapIn;
                         const tapOut = data1[i].tapOut;
-                        let countCardData1 = generateCard(gateName, tapIn, tapOut);
+                        const tapInOut = data1[i].tapInOut;
+                        let countCardData1 = generateCard(gateName, tapIn, tapOut, tapInOut);
                         if (countCard == null) {
                             countCard = countCardData1;
                         } else {
@@ -189,7 +220,8 @@ $(document).ready(function () {
                         newData.push({
                             gateName: gateName,
                             tapIn: tapIn,
-                            tapOut: tapOut
+                            tapOut: tapOut,
+                            tapInOut:tapInOut
                         });
                     }
                     if (JSON.stringify(newData) !== JSON.stringify(previousData)) {
@@ -235,7 +267,8 @@ $(document).ready(function () {
                     gatePull.push(gateName);
                     const tapIn = data1[i].tapIn;
                     const tapOut = data1[i].tapOut;
-                    let countCardData1 = generateCard(gateName, tapIn, tapOut);
+                    const tapInOut = data1[1].tapInOut;
+                    let countCardData1 = generateCard(gateName, tapIn, tapOut, tapInOut);
                     if (countCard == null) {
                         countCard = countCardData1;
                     } else {
@@ -286,6 +319,7 @@ $(document).ready(function () {
     function startAutoRefresh() {
         intervalId = setInterval(fetchData, 5000);
     }
+
     function stopAutoRefresh() {
         if (intervalId) {
             clearInterval(intervalId);
@@ -296,10 +330,10 @@ $(document).ready(function () {
     // Function to stop auto-refresh
 
 
-        fetchData();
+    fetchData();
 
-        // Start auto-refresh
-        startAutoRefresh();
+    // Start auto-refresh
+    startAutoRefresh();
 
     // Initial fetch
 

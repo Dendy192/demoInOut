@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="<c:url value="assets/css/rome.css"/>"/>
 </head>
 <body style="background-color: #f1f1f1">
-<div class="wrapper">
+<div class="wrapper sidebar_minimize">
     <div class="sidebar" data-background-color="dark">
         <div class="sidebar-logo">
             <!-- Logo Header -->

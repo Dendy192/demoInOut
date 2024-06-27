@@ -5,6 +5,7 @@ public class TapInOutDetailVo {
     private String gateName;
     private String tapIn;
     private String tapOut;
+    private String tapInOut;
 
     public String getGateName() {
         return gateName;
@@ -28,5 +29,13 @@ public class TapInOutDetailVo {
 
     public void setTapOut(String tapOut) {
         this.tapOut = tapOut;
+    }
+
+    public String getTapInOut() {
+        return tapInOut;
+    }
+
+    public void setTapInOut(String tapInOut) {
+        this.tapInOut = tapInOut;
     }
 }

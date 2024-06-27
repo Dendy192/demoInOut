@@ -40,10 +40,10 @@ public class KaryawanServiceImpl implements KaryawanService {
         vo.setId(model.getId());
         vo.setTag(model.getNoKartu());
         vo.setPerusahaan(model.getPerusahaan());
-        vo.setKtp(model.getKtp());
+        vo.setKtp("");
         vo.setNama(model.getNama());
         vo.setRuang(model.getPass());
-        vo.setNoHp(model.getNoHp());
+        vo.setNoHp("");
         vo.setJab(model.getJabatan());
         vo.setBerlaku(DateUtils.dateSqlToString(model.getBerlaku()));
         if (model.getUnv() == 1) {
@@ -103,8 +103,8 @@ public class KaryawanServiceImpl implements KaryawanService {
         mstkaryModel.setNoKartu(form.getTag());
         mstkaryModel.setPerusahaan(form.getPerusahaan());
         mstkaryModel.setNama(form.getNama());
-        mstkaryModel.setKtp(form.getKtp());
-        mstkaryModel.setNoHp(form.getNoHp());
+//        mstkaryModel.setKtp(form.getKtp());
+//        mstkaryModel.setNoHp(form.getNoHp());
         mstkaryService.save(mstkaryModel);
 
         if (!form.getFotoStatus().isEmpty()) {
