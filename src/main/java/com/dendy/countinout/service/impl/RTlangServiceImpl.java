@@ -56,6 +56,7 @@ public class RTlangServiceImpl implements RTLangService {
                 List<String> lOut = (List<String>) tmp.get(LabelUtils.tapOut);
                 int inC = 0;
                 int outC = 0;
+
                 if (lIn != null) {
                     inC = lIn.size();
                 }
@@ -64,11 +65,14 @@ public class RTlangServiceImpl implements RTLangService {
                 }
                 String countIn = String.valueOf(inC);
                 String countOut = String.valueOf(outC);
-
+                int inOutC = inC - outC;
+                System.out.println(inOutC);
+                String inOutCount = String.valueOf(inOutC);
 
                 TapInOutDetailVo tapInOutDetailVo = new TapInOutDetailVo();
                 tapInOutDetailVo.setGateName(key);
                 tapInOutDetailVo.setTapIn(countIn);
+                tapInOutDetailVo.setTapInOut(inOutCount);
                 tapInOutDetailVo.setTapOut(countOut);
 
 
@@ -86,7 +90,7 @@ public class RTlangServiceImpl implements RTLangService {
                 TapInOutDetailVo tapInOutDetailVo = new TapInOutDetailVo();
                 tapInOutDetailVo.setTapIn("0");
                 tapInOutDetailVo.setTapOut("0");
-
+                tapInOutDetailVo.setTapInOut("0");
 
                 tapInOutDetailVo.setGateName(vo1.getName());
 
@@ -140,12 +144,14 @@ public class RTlangServiceImpl implements RTLangService {
                 }
                 String countIn = String.valueOf(inC);
                 String countOut = String.valueOf(outC);
-
+                int inOutC = inC - outC;
+                String inOutCount = String.valueOf(inOutC);
 
                 TapInOutDetailVo tapInOutDetailVo = new TapInOutDetailVo();
                 tapInOutDetailVo.setGateName(key);
                 tapInOutDetailVo.setTapIn(countIn);
                 tapInOutDetailVo.setTapOut(countOut);
+                tapInOutDetailVo.setTapInOut(inOutCount);
 
 
                 tapInOutDetailVos.add(tapInOutDetailVo);
