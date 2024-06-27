@@ -20,7 +20,10 @@ public class LoginController {
 
     @Autowired
     SYSACCESService sysaccesService;
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String indexPage(@ModelAttribute("loginForm") LoginForm form, HttpServletRequest request) {
+        return "index";
+    }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(@ModelAttribute("loginForm") LoginForm form, HttpServletRequest request) {
         return "index";
