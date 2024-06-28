@@ -8,7 +8,15 @@ function removeAttributeComponent(id) {
 }
 function allowOnlyNumbers(event) {
   var charCode = (event.which) ? event.which : event.keyCode;
-  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+  if (
+      charCode === 46 ||  // Allow .
+      charCode === 43 ||  // Allow +
+      charCode === 45 ||  // Allow -
+      charCode === 32 || // allow space
+      (charCode >= 48 && charCode <= 57)  // Allow numbers 0-9
+  ) {
+    return;
+  } else {
     event.preventDefault();
   }
 }
@@ -16,7 +24,12 @@ function styleDisplay(id, display) {
   document.getElementById(id).style.display = display;
 }
 function submitForm(){
-  document.getElementById("karyawanForm").submit();
+  let phone = document.getElementById("noHP").value;
+  if(phone.length > 20){
+    alert("Phone Number to long")
+  }else{
+    document.getElementById("karyawanForm").submit();
+  }
 }
 
 const editBtn = document.getElementById("editBtn");

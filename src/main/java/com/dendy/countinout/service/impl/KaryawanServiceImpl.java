@@ -40,10 +40,10 @@ public class KaryawanServiceImpl implements KaryawanService {
         vo.setId(model.getId());
         vo.setTag(model.getNoKartu());
         vo.setPerusahaan(model.getPerusahaan());
-        vo.setKtp("");
+        vo.setKtp(model.getNoKtp());
         vo.setNama(model.getNama());
         vo.setRuang(model.getPass());
-        vo.setNoHp("");
+        vo.setNoHp(model.getPhoneNumber());
         vo.setJab(model.getJabatan());
         vo.setBerlaku(DateUtils.dateSqlToString(model.getBerlaku()));
         if (model.getUnv() == 1) {
@@ -68,7 +68,8 @@ public class KaryawanServiceImpl implements KaryawanService {
             vo.setTag(model.getNoKartu());
             vo.setNama(model.getNama());
             vo.setPerusahaan(model.getPerusahaan());
-            vo.setNoHp("");
+            vo.setNoHp(model.getPhoneNumber());
+            vo.setKtp(model.getNoKtp());
             if (model.getUnv() == 1) {
                 vo.setBerlaku("UNLIMITED");
             } else {
@@ -103,8 +104,8 @@ public class KaryawanServiceImpl implements KaryawanService {
         mstkaryModel.setNoKartu(form.getTag());
         mstkaryModel.setPerusahaan(form.getPerusahaan());
         mstkaryModel.setNama(form.getNama());
-//        mstkaryModel.setKtp(form.getKtp());
-//        mstkaryModel.setNoHp(form.getNoHp());
+        mstkaryModel.setNoKtp(form.getKtp());
+        mstkaryModel.setPhoneNumber(form.getNoHp());
         mstkaryService.save(mstkaryModel);
 
         if (!form.getFotoStatus().isEmpty()) {
