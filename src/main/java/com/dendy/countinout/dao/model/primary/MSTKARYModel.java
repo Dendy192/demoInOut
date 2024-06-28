@@ -39,6 +39,11 @@ public class MSTKARYModel {
     @Column(name = "MSTUNV")
     private int unv;
 
+    @Column(name = "MSTNAMA1")
+    private String phoneNumber;
+
+    @Column(name = "MSTTMP1")
+    private String noKtp;
 
     public String getId() {
         return id;
@@ -113,5 +118,19 @@ public class MSTKARYModel {
         this.unv = unv;
     }
 
-  
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getNoKtp() {
+        return noKtp;
+    }
+
+    public void setNoKtp(String noKtp) {
+        this.noKtp = noKtp;
+    }
 }
