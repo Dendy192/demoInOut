@@ -1,5 +1,6 @@
 package com.dendy.countinout.service.impl;
 
+import com.dendy.countinout.CountInOutApplication;
 import com.dendy.countinout.dao.model.primary.TRNKRTLANGModel;
 import com.dendy.countinout.dao.service.primary.TRNKRTLANGService;
 import com.dendy.countinout.service.GATEService;
@@ -9,6 +10,8 @@ import com.dendy.countinout.utils.LabelUtils;
 import com.dendy.countinout.vo.GateVo;
 import com.dendy.countinout.vo.TapInOutDetailVo;
 import com.dendy.countinout.vo.TapInOutVo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,7 @@ import java.util.*;
 
 @Service
 public class RTlangServiceImpl implements RTLangService {
+    private static final Logger LOGGER = LogManager.getLogger(RTlangServiceImpl.class);
     @Autowired
     TRNKRTLANGService trnkrtlangService;
 
@@ -78,10 +82,11 @@ public class RTlangServiceImpl implements RTLangService {
 
                 tapInOutDetailVos.add(tapInOutDetailVo);
 
-                vo.setData(tapInOutDetailVos);
 
-                result.put(LabelUtils.data, vo);
             }
+            vo.setData(tapInOutDetailVos);
+
+            result.put(LabelUtils.data, vo);
         } else {
             TapInOutVo vo2 = new TapInOutVo();
             List<TapInOutDetailVo> tapInOutDetailVos1 = new ArrayList<>();
@@ -100,7 +105,7 @@ public class RTlangServiceImpl implements RTLangService {
             vo2.setData(tapInOutDetailVos1);
             result.put(LabelUtils.data, vo2);
         }
-
+        LOGGER.info(result.get(LabelUtils.data));
         return result;
     }
 
@@ -152,14 +157,12 @@ public class RTlangServiceImpl implements RTLangService {
                 tapInOutDetailVo.setTapIn(countIn);
                 tapInOutDetailVo.setTapOut(countOut);
                 tapInOutDetailVo.setTapInOut(inOutCount);
-
-
                 tapInOutDetailVos.add(tapInOutDetailVo);
 
-                vo.setData(tapInOutDetailVos);
-
-                result.put(LabelUtils.data, vo);
             }
+            vo.setData(tapInOutDetailVos);
+
+            result.put(LabelUtils.data, vo);
         } else {
             TapInOutVo vo2 = new TapInOutVo();
             List<TapInOutDetailVo> tapInOutDetailVos1 = new ArrayList<>();
@@ -168,7 +171,7 @@ public class RTlangServiceImpl implements RTLangService {
                 TapInOutDetailVo tapInOutDetailVo = new TapInOutDetailVo();
                 tapInOutDetailVo.setTapIn("0");
                 tapInOutDetailVo.setTapOut("0");
-
+                tapInOutDetailVo.setTapInOut("0");
 
                 tapInOutDetailVo.setGateName(vo1.getName());
 
@@ -177,8 +180,8 @@ public class RTlangServiceImpl implements RTLangService {
             }
             vo2.setData(tapInOutDetailVos1);
             result.put(LabelUtils.data, vo2);
+            LOGGER.info(result.get(LabelUtils.data));
         }
-
         return result;
     }
 
@@ -194,6 +197,7 @@ public class RTlangServiceImpl implements RTLangService {
         if (in != null) {
             for (TRNKRTLANGModel i : in) {
                 GateVo gateVo = gateService.getGateName(i.getGateMasuk());
+
                 HashMap data = (HashMap) result.get(gateVo.getName());
                 if (data.containsKey(LabelUtils.tapIn)) {
                     List<String> gate = (List<String>) data.get(LabelUtils.tapIn);
