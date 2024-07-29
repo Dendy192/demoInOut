@@ -199,9 +199,10 @@ $(document).ready(function () {
                     for (let i = 0; i < data1.length; i++) {
                         let gateName = data1[i].gateName;
                         gatePull.push(gateName);
-                        const tapIn = data1[i].tapIn;
-                        const tapOut = data1[i].tapOut;
-                        const tapInOut = data1[i].tapInOut;
+                        let tapIn = data1[i].tapIn;
+                        let tapOut = data1[i].tapOut;
+                        let tapInOut = data1[i].tapInOut;
+                        console.log("dari api ke js hasilnya : "+tapInOut)
                         let countCardData1 = generateCard(gateName, tapIn, tapOut, tapInOut);
                         if (countCard == null) {
                             countCard = countCardData1;
@@ -267,7 +268,7 @@ $(document).ready(function () {
                     gatePull.push(gateName);
                     const tapIn = data1[i].tapIn;
                     const tapOut = data1[i].tapOut;
-                    const tapInOut = data1[1].tapInOut;
+                    const tapInOut = data1[i].tapInOut;
                     let countCardData1 = generateCard(gateName, tapIn, tapOut, tapInOut);
                     if (countCard == null) {
                         countCard = countCardData1;
