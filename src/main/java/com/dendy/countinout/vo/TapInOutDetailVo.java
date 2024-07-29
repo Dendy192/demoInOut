@@ -38,4 +38,14 @@ public class TapInOutDetailVo {
     public void setTapInOut(String tapInOut) {
         this.tapInOut = tapInOut;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "gateName='" + gateName + '\'' +
+                ", tapIn='" + tapIn + '\'' +
+                ", tapOut='" + tapOut + '\'' +
+                ", tapInOut='" + tapInOut + '\'' +
+                '}';
+    }
 }
