@@ -109,8 +109,15 @@ public class KaryawanServiceImpl implements KaryawanService {
         mstkaryService.save(mstkaryModel);
 
         if (!form.getFotoStatus().isEmpty()) {
-            PIC001Model pic001Model = pic001Service.findPIC001ModelByPid(form.getId());
-            pic001Service.delete(pic001Model);
+            Optional<PIC001Model> opic001Model = pic001Service.findPIC001ModelByPid(form.getId());
+            PIC001Model pic001Model = null;
+            if(opic001Model.isPresent()){
+                pic001Model = opic001Model.get();
+                pic001Service.delete(pic001Model);
+            }
+            else{
+                pic001Model = new PIC001Model();
+            }
             pic001Model.setPlog(DateUtils.getTimeSql());
             if (form.getFotoStatus().equalsIgnoreCase("change")) {
                 pic001Model.setData(form.getFoto().getBytes());
@@ -120,8 +127,15 @@ public class KaryawanServiceImpl implements KaryawanService {
             pic001Service.save(pic001Model);
         }
         if (!form.getFotoKtpStatus().isEmpty()) {
-            PIC006Model pic006Model = pic006Service.findPIC006ModelByPid(form.getId());
-            pic006Service.delete(pic006Model);
+            Optional<PIC006Model> opic006Model = pic006Service.findPIC006ModelByPid(form.getId());
+            PIC006Model pic006Model = null;
+            if(opic006Model.isPresent()){
+                pic006Model = opic006Model.get();
+                pic006Service.delete(pic006Model);
+            }
+            else{
+                pic006Model = new PIC006Model();
+            }
             pic006Model.setPlog(DateUtils.getTimeSql());
             if (form.getFotoKtpStatus().equalsIgnoreCase("change")) {
                 pic006Model.setData(form.getFotoKtp().getBytes());
