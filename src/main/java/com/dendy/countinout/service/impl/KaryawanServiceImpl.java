@@ -117,6 +117,8 @@ public class KaryawanServiceImpl implements KaryawanService {
             }
             else{
                 pic001Model = new PIC001Model();
+                pic001Model.setPid(form.getId());
+                pic001Model.setType("image/jpeg");
             }
             pic001Model.setPlog(DateUtils.getTimeSql());
             if (form.getFotoStatus().equalsIgnoreCase("change")) {
@@ -135,6 +137,8 @@ public class KaryawanServiceImpl implements KaryawanService {
             }
             else{
                 pic006Model = new PIC006Model();
+                pic006Model.setPid(form.getId());
+                pic006Model.setType("image/jpeg");
             }
             pic006Model.setPlog(DateUtils.getTimeSql());
             if (form.getFotoKtpStatus().equalsIgnoreCase("change")) {

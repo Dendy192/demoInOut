@@ -77,10 +77,12 @@ public class KaryawanController {
     @RequestMapping("/ktp/{id}")
     public void displayktp(@PathVariable String id, HttpServletResponse response) throws IOException {
         Optional<PIC006Model> omodel = pic006Service.findPIC006ModelByPid(id);
-        PIC006Model model = omodel.get();
-        response.setContentType("image/jpeg"); // or "image/png" or other image formats
-        response.getOutputStream().write(model.getData());
-        response.getOutputStream().close();
+        if (omodel.isPresent()) {
+            PIC006Model model = omodel.get();
+            response.setContentType("image/jpeg"); // or "image/png" or other image formats
+            response.getOutputStream().write(model.getData());
+            response.getOutputStream().close();
+        }
     }
 
     @RequestMapping(value = "/karyawanData")
