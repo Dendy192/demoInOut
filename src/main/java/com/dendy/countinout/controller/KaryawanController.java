@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class KaryawanController {
@@ -75,7 +76,8 @@ public class KaryawanController {
 
     @RequestMapping("/ktp/{id}")
     public void displayktp(@PathVariable String id, HttpServletResponse response) throws IOException {
-        PIC006Model model = pic006Service.findPIC006ModelByPid(id);
+        Optional<PIC006Model> omodel = pic006Service.findPIC006ModelByPid(id);
+        PIC006Model model = omodel.get();
         response.setContentType("image/jpeg"); // or "image/png" or other image formats
         response.getOutputStream().write(model.getData());
         response.getOutputStream().close();

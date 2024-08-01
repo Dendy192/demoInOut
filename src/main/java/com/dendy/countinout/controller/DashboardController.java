@@ -26,6 +26,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -94,7 +95,8 @@ public class DashboardController {
 
     @GetMapping("/images/{id}")
     public void serveFile(@PathVariable String id, HttpServletResponse response) throws IOException {
-        PIC001Model model = pic001Service.findPIC001ModelByPid(id);
+        Optional<PIC001Model> omodel = pic001Service.findPIC001ModelByPid(id);
+        PIC001Model model = omodel.get();
         response.setContentType("image/jpeg"); // or "image/png" or other image formats
         response.getOutputStream().write(model.getData());
         response.getOutputStream().close();
