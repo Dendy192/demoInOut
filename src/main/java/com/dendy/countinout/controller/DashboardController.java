@@ -43,7 +43,6 @@ public class DashboardController {
     private final ObjectMapper objectMapper;
 
 
-
     public DashboardController(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
@@ -53,7 +52,7 @@ public class DashboardController {
 
     @RequestMapping(value = "/dashboard")
     public String getTapinandOutToday(HttpServletRequest request) {
-        if(request.getSession().getAttribute("usernameLogin") != null){
+        if (request.getSession().getAttribute("usernameLogin") != null) {
             return "dashboard";
         }
         MessageVo vo = MessageHelperUtils.mustLoginFirst();
@@ -79,7 +78,7 @@ public class DashboardController {
 
     @RequestMapping(value = "/details")
     public String detail(HttpServletRequest request, @RequestParam String gateName, @RequestParam String startDate, @RequestParam String endDate) throws ParseException, SQLException {
-        if(request.getSession().getAttribute("usernameLogin") != null) {
+        if (request.getSession().getAttribute("usernameLogin") != null) {
 
             HashMap result = detailsService.getDetail(gateName, startDate, endDate);
             request.getSession().setAttribute("gate", gateName);
@@ -96,17 +95,21 @@ public class DashboardController {
     @GetMapping("/images/{id}")
     public void serveFile(@PathVariable String id, HttpServletResponse response) throws IOException {
         Optional<PIC001Model> omodel = pic001Service.findPIC001ModelByPid(id);
-        PIC001Model model = omodel.get();
-        response.setContentType("image/jpeg"); // or "image/png" or other image formats
-        response.getOutputStream().write(model.getData());
-        response.getOutputStream().close();
+        if (omodel.isPresent()) {
+            PIC001Model model = omodel.get();
+            response.setContentType("image/jpeg"); // or "image/png" or other image formats
+            response.getOutputStream().write(model.getData());
+            response.getOutputStream().close();
+        }
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.POST)
-    public ResponseEntity<byte[]> downloadReport(@RequestParam("fileType") String fileType,@RequestParam("searchValue") String searchValue, HttpServletRequest request, HttpServletResponse response ) throws JRException, IOException {
+    public ResponseEntity<byte[]> downloadReport(@RequestParam("fileType") String
+                                                         fileType, @RequestParam("searchValue") String searchValue, HttpServletRequest request, HttpServletResponse
+                                                         response) throws JRException, IOException {
         GenerateVo vo = (GenerateVo) request.getSession().getAttribute("generate");
         GenerateVo tmp = new GenerateVo(vo);
-        searchValue = searchValue.replace(",","");
+        searchValue = searchValue.replace(",", "");
         List<GenerateDetailVo> generateDetailVos = filterData(tmp.getData(), searchValue);
         byte[] reportBytes;
         String contentType;
